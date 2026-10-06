@@ -29,13 +29,6 @@
       "skillFolderHash": "a6d128e53b4ec0238baee751dde33bf707adb5ec",
       "updatedAt": "2026-06-01T02:23:09.594Z"
     },
-    "make-interfaces-feel-better": {
-      "source": "jakubkrehel/make-interfaces-feel-better",
-      "sourceUrl": "https://github.com/jakubkrehel/make-interfaces-feel-better.git",
-      "skillPath": "skills/make-interfaces-feel-better/SKILL.md",
-      "skillFolderHash": "ae0b04b484f3c222048395723a253f6959bf727d",
-      "updatedAt": "2026-07-12T21:05:23.057Z"
-    },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
@@ -252,6 +245,13 @@
       "skillPath": "skills/engineering/retro/SKILL.md",
       "skillFolderHash": "335c1862a43da9d629abafdb79ca0c0de118be08",
       "updatedAt": "2026-10-06T05:11:11.027Z"
+    },
+    "git-commit": {
+      "source": "github/awesome-copilot",
+      "sourceUrl": "https://github.com/github/awesome-copilot.git",
+      "skillPath": "skills/git-commit/SKILL.md",
+      "skillFolderHash": "883a6a7466f55a9cd9f22cf1cce2d9333fc9b998",
+      "updatedAt": "2026-04-25T17:55:14.241Z"
     }
   }
 }

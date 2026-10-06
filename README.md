@@ -69,7 +69,6 @@ npx skills add mattpocock/skills -g -y --skill \
 | `review-animations` | Review motion against that craft bar | [SKILL.md](https://github.com/emilkowalski/skills/blob/main/skills/review-animations/SKILL.md) | `npx skills add emilkowalski/skills -g -s review-animations` |
 | `pick-ui-library` | Choose a library for a specific UI job | [SKILL.md](https://github.com/emilkowalski/skills/blob/main/skills/pick-ui-library/SKILL.md) | `npx skills add emilkowalski/skills -g -s pick-ui-library` |
 | `design-taste-frontend` | A page that should not look templated | [SKILL.md](https://github.com/Leonxlnx/taste-skill/blob/main/skills/taste-skill/SKILL.md) | `npx skills add Leonxlnx/taste-skill -g -s design-taste-frontend` |
-| `make-interfaces-feel-better` | Hover, shadow, border, and easing on a component | [SKILL.md](https://github.com/jakubkrehel/make-interfaces-feel-better/blob/main/skills/make-interfaces-feel-better/SKILL.md) | `npx skills add jakubkrehel/make-interfaces-feel-better -g -s make-interfaces-feel-better` |
 
 ## Also installed
 
@@ -79,6 +78,7 @@ These are on the machine. They are not part of the loop above.
 | --- | --- | --- |
 | `agent-browser` | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | `npx skills add vercel-labs/agent-browser -g -s agent-browser` |
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | `npx skills add vercel-labs/skills -g -s find-skills` |
+| `git-commit` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | `npx skills add github/awesome-copilot -g -s git-commit` |
 | `writing-documentation-with-diataxis` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | `npx skills add sammcj/agentic-coding -g -s writing-documentation-with-diataxis` |
 
 ## Skills I publish
