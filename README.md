@@ -78,12 +78,7 @@ These are on the machine. They are not part of the loop above.
 | Skill | Source | Install |
 | --- | --- | --- |
 | `agent-browser` | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | `npx skills add vercel-labs/agent-browser -g -s agent-browser` |
-| `code-review-and-quality` | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | `npx skills add addyosmani/agent-skills -g -s code-review-and-quality` |
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | `npx skills add vercel-labs/skills -g -s find-skills` |
-| `git-commit` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | `npx skills add github/awesome-copilot -g -s git-commit` |
-| `receiving-code-review` | [obra/superpowers](https://github.com/obra/superpowers) | `npx skills add obra/superpowers -g -s receiving-code-review` |
-| `skill-creator` | [anthropics/skills](https://github.com/anthropics/skills) | `npx skills add anthropics/skills -g -s skill-creator` |
-| `vercel-composition-patterns` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | `npx skills add vercel-labs/agent-skills -g -s vercel-composition-patterns` |
 | `writing-documentation-with-diataxis` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | `npx skills add sammcj/agentic-coding -g -s writing-documentation-with-diataxis` |
 
 ## Skills I publish

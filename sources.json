@@ -15,27 +15,6 @@
       "skillFolderHash": "037e8078db4b20b4aa25c04f21c6de7d335ec449",
       "updatedAt": "2026-08-20T08:27:37.194Z"
     },
-    "skill-creator": {
-      "source": "anthropics/skills",
-      "sourceUrl": "https://github.com/anthropics/skills.git",
-      "skillPath": "skills/skill-creator/SKILL.md",
-      "skillFolderHash": "3cf9a8db32597ba3e24b584a3d696f4e11c7d7b6",
-      "updatedAt": "2026-06-01T02:22:40.973Z"
-    },
-    "vercel-composition-patterns": {
-      "source": "vercel-labs/agent-skills",
-      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
-      "skillPath": "skills/composition-patterns/SKILL.md",
-      "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368",
-      "updatedAt": "2026-03-26T07:23:07.024Z"
-    },
-    "git-commit": {
-      "source": "github/awesome-copilot",
-      "sourceUrl": "https://github.com/github/awesome-copilot.git",
-      "skillPath": "skills/git-commit/SKILL.md",
-      "skillFolderHash": "883a6a7466f55a9cd9f22cf1cce2d9333fc9b998",
-      "updatedAt": "2026-04-25T17:55:14.241Z"
-    },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
@@ -56,13 +35,6 @@
       "skillPath": "skills/make-interfaces-feel-better/SKILL.md",
       "skillFolderHash": "ae0b04b484f3c222048395723a253f6959bf727d",
       "updatedAt": "2026-07-12T21:05:23.057Z"
-    },
-    "receiving-code-review": {
-      "source": "obra/superpowers",
-      "sourceUrl": "https://github.com/obra/superpowers.git",
-      "skillPath": "skills/receiving-code-review/SKILL.md",
-      "skillFolderHash": "f54c765d64eedccc17aa099b4947e64231f4b698",
-      "updatedAt": "2026-06-23T05:41:25.992Z"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
@@ -245,13 +217,6 @@
       "skillPath": "skills/engineering/code-review/SKILL.md",
       "skillFolderHash": "d8e341cee7980127dddda05159bedf25dc853615",
       "updatedAt": "2026-10-06T05:10:49.896Z"
-    },
-    "code-review-and-quality": {
-      "source": "addyosmani/agent-skills",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/code-review-and-quality/SKILL.md",
-      "skillFolderHash": "8c26aef07c0ac94770d48ed68e72c0fd585420a6",
-      "updatedAt": "2026-08-27T05:58:40.617Z"
     },
     "writing-documentation-with-diataxis": {
       "source": "sammcj/agentic-coding",
