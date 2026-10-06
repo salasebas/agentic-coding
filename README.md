@@ -1,8 +1,10 @@
 # How I work
 
-This is the set of agent skills I keep installed, and when I reach for each one.
+This is how I work with coding agents: the global instructions in [`AGENTS.md`](./AGENTS.md), and the skills I keep installed.
 
-I do not author these skills, and I do not copy them into this repo. Upstream is the source of truth. Each entry links to the skill and gives the command that installs it again. [`sources.json`](./sources.json) records the folder hash of the copy I last installed, so a rename or deletion upstream is visible. It is not a backup of the skill text.
+[`AGENTS.md`](./AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`.
+
+I do not author the skills below, and I do not copy them into this repo. Upstream is the source of truth. Each entry links to the skill and gives the command that installs it again. [`sources.json`](./sources.json) records the folder hash of the copy I last installed, so a rename or deletion upstream is visible. It is not a backup of the skill text.
 
 The skills I do publish live in [salasebas/skills](https://github.com/salasebas/skills): `orchestrate`, `ship`, and `improve`.
 
