@@ -71,6 +71,8 @@ I do not author the skills below, and I do not copy them into this repo. Upstrea
 | --- | --- | --- |
 | `agent-browser` | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | `npx skills add vercel-labs/agent-browser -g -s agent-browser` |
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | `npx skills add vercel-labs/skills -g -s find-skills` |
+| `unslop` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/pstack) | `npx skills add https://github.com/cursor/plugins/tree/main/pstack -g -s unslop` |
+| `deslop` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/cursor-team-kit) | `npx skills add https://github.com/cursor/plugins/tree/main/cursor-team-kit -g -s deslop` |
 | `git-commit` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | `npx skills add github/awesome-copilot -g -s git-commit` |
 | `writing-documentation-with-diataxis` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | `npx skills add sammcj/agentic-coding -g -s writing-documentation-with-diataxis` |
 
