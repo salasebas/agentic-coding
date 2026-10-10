@@ -1,8 +1,25 @@
-# How I work
+# Agentic coding
 
-This is how I work with coding agents: the global instructions in [`AGENTS.md`](./AGENTS.md), and the skills I keep installed.
+This is how I work with coding agents: my global instructions in [`rules/`](./rules/), my own skills in [`skills/`](./skills/), and the skills I keep installed.
 
-[`AGENTS.md`](./AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`.
+[`rules/AGENTS.md`](./rules/AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`rules/CLAUDE.md`](./rules/CLAUDE.md) is a symlink to it, for the tools that read `CLAUDE.md`.
+
+## Mine
+
+| Skill | Source | Install |
+| --- | --- | --- |
+| `review-changes` | [SKILL.md](./skills/review-changes/SKILL.md) | `npx skills add salasebas/agentic-coding -g -s review-changes` |
+
+`review-changes` is assembled from upstream review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records which part came from which skill.
+
+To update `review-changes`, follow [How to update from upstream](./skills/review-changes/SOURCES.md#how-to-update-from-upstream): paste the new upstream wording and reapply only the local edits listed in that file.
+
+The repo is also a plugin marketplace named `salasebas`, with one plugin, `salasebas-skills`. The plugin version lives in [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json).
+
+| Harness | Install |
+| --- | --- |
+| Claude Code | `claude plugin marketplace add salasebas/agentic-coding`, then `claude plugin install salasebas-skills@salasebas` |
+| Codex | `codex plugin marketplace add salasebas/agentic-coding`, then `codex plugin add salasebas-skills` |
 
 I do not author the skills below, and I do not copy them into this repo. Upstream is the source of truth. Each entry links to the skill and gives the command that installs it again. [`sources.json`](./sources.json) records the folder hash of the copy I last installed, so a rename or deletion upstream is visible. It is not a backup of the skill text.
 
@@ -56,3 +73,7 @@ I do not author the skills below, and I do not copy them into this repo. Upstrea
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | `npx skills add vercel-labs/skills -g -s find-skills` |
 | `git-commit` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | `npx skills add github/awesome-copilot -g -s git-commit` |
 | `writing-documentation-with-diataxis` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | `npx skills add sammcj/agentic-coding -g -s writing-documentation-with-diataxis` |
+
+## License
+
+[MIT](./LICENSE). `review-changes` includes text from other MIT-licensed skills; [`SOURCES.md`](./skills/review-changes/SOURCES.md) names them.

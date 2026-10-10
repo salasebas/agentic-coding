@@ -1,0 +1,22 @@
+{
+  "name": "salasebas",
+  "owner": {
+    "name": "Sebastian Sala",
+    "url": "https://github.com/salasebas"
+  },
+  "metadata": {
+    "description": "Sebastian's own agent skills, as an installable plugin."
+  },
+  "plugins": [
+    {
+      "name": "salasebas-skills",
+      "source": "./",
+      "description": "review-changes: two parallel reviewers, validated findings, optional fix-and-review loop.",
+      "category": "engineering",
+      "keywords": [
+        "skills",
+        "code-review"
+      ]
+    }
+  ]
+}

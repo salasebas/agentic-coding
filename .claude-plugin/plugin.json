@@ -1,0 +1,18 @@
+{
+  "name": "salasebas-skills",
+  "version": "0.1.0",
+  "description": "Sebastian's own agent skills. review-changes: two parallel reviewers, validated findings, optional fix-and-review loop.",
+  "author": {
+    "name": "Sebastian Sala",
+    "url": "https://github.com/salasebas"
+  },
+  "repository": "https://github.com/salasebas/agentic-coding",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "code-review"
+  ],
+  "skills": [
+    "./skills/review-changes"
+  ]
+}

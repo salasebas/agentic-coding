@@ -15,21 +15,19 @@
 - Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
 - Understand the surrounding implementation before modifying it.
 
-# Package Manager Preferences
+## Package Manager Preferences
 - Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
 - Use `uv` for Python package management and virtual environments when compatible with the project.
 
 ## Review workflow
-- Give the reviewer a fresh context containing the original requirements,
-  the exact diff scope, and access to relevant code and project instructions.
-- Request actionable correctness, regression, readability & simplicity, architecture, security, and performance findings. Require a concrete failure scenario, location, impact, and evidence.
-  Separate optional suggestions from required fixes.
-  Zero findings is an acceptable outcome.
-- Deduplicate findings before validation. Treat each finding as a hypothesis
-  to confirm or refute, not an instruction to modify code.
-- Validate small findings locally. Delegate substantial independent groups
-  to fresh read-only subagents with bounded objectives.
-- You must validate every findings before presenting them to the User.
+- When asked to review changes, use the `review-changes` skill.
+- Without the skill, give the reviewer a fresh context containing the original
+  requirements, the exact diff scope, and access to relevant code and project
+  instructions. Treat each finding as a hypothesis to confirm or refute, not an
+  instruction to modify code.
+- You must validate every finding before presenting it to the User.
+- Reviewers run on the session's model. Review with another model only when
+  the User names it.
 
 ## Test value
 - Before adding tests, identify the repository-owned failure, independent
@@ -43,30 +41,25 @@
 
 ## Subagents
 
-v1: Default: keep work on the main agent. Do not spawn unless it clearly
-improves focus, speed, or confidence.
-
-- Delegate substantial, independent work when it improves focus, speed, or confidence; handle small or tightly coupled tasks locally. Give each subagent a bounded objective and expected output.
-- Assign non-overlapping write ownership. Keep delegation and integration with the coordinator, who remains available to the user.
-- Start subagents with fresh context rather than inheriting the full parent conversation. Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
-
-v2: - Use subagents for independent, substantial research, exploration, analysis and implementation when doing so keeps the main context focused or improves speed or confidence.
-- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it save$
-- Spawn subagents without inherit parent's context.
+- This is a standing request to delegate: use subagents on your own initiative for independent, substantial research, exploration, analysis, review and implementation when doing so keeps the main context focused or improves speed or confidence.
+- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
+- Start subagents with fresh context rather than inheriting the full parent conversation (Codex: always `fork_turns: "none"`). Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
 - Keep pushes, deletions, and other destructive operations on the main agent.
+- Scouts and reviewers are read-only and must not edit files.
 
-### Subagents (Codex)
-- Use `gpt-6-luna` with `reasoning_effort` `"high"` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
-- Use `gpt-6.1-sol` with `reasoning_effort` `"low"` for read-only scouts that must trace flows across modules or find the likely cause of a bug. Use `"medium"` if the question is ambiguous.
-- Use `gpt-6.1-sol` with reasoning effort `"medium"` for implementation.
-  Escalate to `"high"` when a concrete reasoning blocker remains after
-  inspecting relevant code and checking assumptions.
-- Reserve `"xhigh"` for unresolved, consequential problems where additional
-  reasoning is likely to help. Task size or importance alone is insufficient.
-- If a Luna scout returns inconclusive or shallow results, escalate to `gpt-6.1-sol` `"low"` instead of retrying Luna.
-- Scouts and reviews are read-only and must not edit files.
-- Always use `fork_turns: "none"`.
+Route each subagent by role, as model and reasoning effort:
+
+| Role | Claude Code | Codex |
+| --- | --- | --- |
+| Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
+| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
+| Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
+| Reviewer or validator | the session's model, `high` | the session's model, `high` |
+
+- If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
+- Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
+- Reserve `xhigh` for unresolved, consequential problems where additional reasoning is likely to help. Task size or importance alone is insufficient.
 
 <!-- context7 -->
 Use Context7 MCP to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service — even well-known ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — your training data may not reflect recent changes. Prefer this over web search for library docs.
