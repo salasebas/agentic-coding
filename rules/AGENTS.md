@@ -1,3 +1,8 @@
+---
+description: Global instructions from ~/.agents/AGENTS.md
+alwaysApply: true
+---
+
 # AGENTS.md
 - English first: all code, comments, identifiers, and internal docs in English.
 - Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
