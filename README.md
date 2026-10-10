@@ -12,6 +12,8 @@ This is how I work with coding agents: the global instructions in [`AGENTS.md`](
 
 `review-changes` is assembled from upstream review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records which part came from which skill.
 
+To update `review-changes`, follow [How to update from upstream](./skills/review-changes/SOURCES.md#how-to-update-from-upstream): paste the new upstream wording and reapply only the local edits listed in that file.
+
 The repo is also a plugin marketplace named `salasebas`, with one plugin, `salasebas-skills`. The plugin version lives in [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json).
 
 | Harness | Install |

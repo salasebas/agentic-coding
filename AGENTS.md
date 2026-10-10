@@ -48,13 +48,13 @@
 - Keep pushes, deletions, and other destructive operations on the main agent.
 
 ### Subagents (Claude Code)
-- Use `haiku` with effort `low` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
+- Use `haiku` with effort `medium` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
 - Use `sonnet` with effort `medium` for implementation. Escalate to `high`
   when a concrete reasoning blocker remains after inspecting relevant code and
   checking assumptions.
 - Let reviewers, validators, and scouts that must trace flows across modules
-  inherit the session's model.
-- If a `haiku` scout returns inconclusive or shallow results, escalate to `sonnet` `low` instead of retrying `haiku`.
+  inherit the session's model. Run reviewers and validators with effort `high`.
+- If a `haiku` scout returns inconclusive or shallow results, escalate to `sonnet` `medium` instead of retrying `haiku`.
 - Scouts and reviews are read-only and must not edit files.
 
 ### Subagents (Codex)
