@@ -9,6 +9,7 @@ alwaysApply: true
 - Prefer the simplest scoped solution and the smallest coherent change that fully solves the task. Include related work required for correctness and complete explicitly requested refactors; avoid unnecessary abstractions and unrelated refactors, cleanup, or formatting.
 - Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability. Do not reimplement common functionality without a clear reason.
 - Lean on the dependencies already in the project before writing your own implementation or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
+- Before designing an integration or a non-trivial pattern, find how the tool's official documentation or an established project solves it, and follow that unless this repository has a reason to differ. Name the source.
 - Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
 - Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
 - When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description. The merge closes the issue.
