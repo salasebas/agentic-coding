@@ -27,7 +27,7 @@ alwaysApply: true
 ## Tests
 - Before adding a test, name the failure it catches, where the expected result comes from, and why no existing test catches it. Extend the existing test when one already owns the scenario.
 - Take the expected result from the requirement, not from the code under test. Passing tests or another agent's agreement do not establish correctness.
-- Prefer a test that enters where a client does (the endpoint, the job, the command) and mocks only what the repository does not own. Go lower only when that layer cannot reach the failure cheaply.
+- Prefer a test that enters where a client does (the endpoint, the job, the command, the screen) and mocks only what the repository does not own. Go lower only when that layer cannot reach the failure cheaply.
 - Test a business rule once, at the layer that owns it. Each entry point that reaches it gets a thin test of its own work: routing, authorization, input mapping, error translation.
 - Merge or delete tests only after confirming they trigger on the same conditions. Keep the regression test of a fixed bug.
 
