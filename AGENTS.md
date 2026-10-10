@@ -1,5 +1,4 @@
 # AGENTS.md
-
 - English first: all code, comments, identifiers, and internal docs in English.
 - Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
 - Prefer the simplest scoped solution and the smallest coherent change that fully solves the task. Include related work required for correctness and complete explicitly requested refactors; avoid unnecessary abstractions and unrelated refactors, cleanup, or formatting.
@@ -10,11 +9,29 @@
 - When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description. The merge closes the issue.
 
 ## Documentation
-
 - When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
 
-## Test value
+## Engineering Principles
+- Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
+- Understand the surrounding implementation before modifying it.
 
+# Package Manager Preferences
+- Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
+- Use `uv` for Python package management and virtual environments when compatible with the project.
+
+## Review workflow
+- Give the reviewer a fresh context containing the original requirements,
+  the exact diff scope, and access to relevant code and project instructions.
+- Request actionable correctness, regression, readability & simplicity, architecture, security, and performance findings. Require a concrete failure scenario, location, impact, and evidence.
+  Separate optional suggestions from required fixes.
+  Zero findings is an acceptable outcome.
+- Deduplicate findings before validation. Treat each finding as a hypothesis
+  to confirm or refute, not an instruction to modify code.
+- Validate small findings locally. Delegate substantial independent groups
+  to fresh read-only subagents with bounded objectives.
+- You must validate every findings before presenting them to the User.
+
+## Test value
 - Before adding tests, identify the repository-owned failure, independent
   expected outcome, and gap in existing coverage.
 - Choose the cheapest test layer that reaches the real failure conditions.
@@ -23,26 +40,33 @@
   Passing tests or another agent's agreement do not establish correctness.
 - Consolidate coverage only after confirming equivalent triggering conditions,
   or retire the obsolete obligation. Preserve meaningful regressions.
-  
+
 ## Subagents
 
-- Use subagents for independent, substantial research, exploration, analysis and implementation when doing so keeps the main context focused or improves speed or confidence.
-- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
+v1: Default: keep work on the main agent. Do not spawn unless it clearly
+improves focus, speed, or confidence.
+
+- Delegate substantial, independent work when it improves focus, speed, or confidence; handle small or tightly coupled tasks locally. Give each subagent a bounded objective and expected output.
+- Assign non-overlapping write ownership. Keep delegation and integration with the coordinator, who remains available to the user.
+- Start subagents with fresh context rather than inheriting the full parent conversation. Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
+
+v2: - Use subagents for independent, substantial research, exploration, analysis and implementation when doing so keeps the main context focused or improves speed or confidence.
+- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it save$
 - Spawn subagents without inherit parent's context.
+- Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
+- Keep pushes, deletions, and other destructive operations on the main agent.
 
-## Engineering Principles
-
-- Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
-- Understand the surrounding implementation before modifying it.
-
-# Package Manager Preferences
-
-- Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
-- Use `uv` for Python package management and virtual environments when compatible with the project.
-
-## Multi-Agent Rules (V2) (ONLY APLIES TO CODEX)
-
-- Spawn subagents with `fork_turns: "none"` by default so the configured subagent model applies. Use the smallest positive value when recent conversation context is necessary.
+### Subagents (Codex)
+- Use `gpt-6-luna` with `reasoning_effort` `"high"` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
+- Use `gpt-6.1-sol` with `reasoning_effort` `"low"` for read-only scouts that must trace flows across modules or find the likely cause of a bug. Use `"medium"` if the question is ambiguous.
+- Use `gpt-6.1-sol` with reasoning effort `"medium"` for implementation.
+  Escalate to `"high"` when a concrete reasoning blocker remains after
+  inspecting relevant code and checking assumptions.
+- Reserve `"xhigh"` for unresolved, consequential problems where additional
+  reasoning is likely to help. Task size or importance alone is insufficient.
+- If a Luna scout returns inconclusive or shallow results, escalate to `gpt-6.1-sol` `"low"` instead of retrying Luna.
+- Scouts and reviews are read-only and must not edit files.
+- Always use `fork_turns: "none"`.
 
 <!-- context7 -->
 Use Context7 MCP to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service — even well-known ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — your training data may not reflect recent changes. Prefer this over web search for library docs.
