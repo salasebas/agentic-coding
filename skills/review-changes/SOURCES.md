@@ -40,7 +40,7 @@ Written for this repo, with no upstream: the scope commands and the checkout rul
 ## Left out on purpose
 
 - From `code-review-and-quality`: the five review axes and their question lists, tests first, verify the verification, change sizing, dead code hygiene, dependency discipline, the multi-model review pattern, review speed, handling disagreements, change descriptions, the severity prefix table, the review checklist, common rationalisations, red flags, and the `references/` checklists. See "Why the reviewers are short".
-- From `thermo-nuclear-code-quality-review`: the rules that `code-review-and-quality` already carries (the 1000-line rule, spaghetti growth, type boundaries, canonical layer), the primary questions, the list of what to flag, the list of preferred remedies, and the review tone phrases.
+- From `thermo-nuclear-code-quality-review`: the primary questions, the list of what to flag, the list of preferred remedies, and the review tone phrases. All eight of its standards are kept.
 - From `ponytail-review`: the `shortcut:` comment convention and the `Lean:` line.
 - From `review-loop`: the 1 to 10 score, the quality gate, and model selection.
 
@@ -54,7 +54,7 @@ The question lists and checklists were removed after a comparison on three merge
 | Structure, findings confirmed (one pull request) | 2 of 3 | 3 of 3 |
 | Tokens per bugs review, mean | 95k | 91k |
 
-Both variants found the two shared defects. Only the short one found the most severe defect of the run. The sample is small, so read this as "the lists did not help", not as "short is better". Before adding a list back, run the same comparison.
+Both variants found the two shared defects. Only the short one found the most severe defect of the run. The sample is small, so read this as "the lists did not help", not as "short is better". Before adding a list back, run the same comparison. The structure reviewer tested carried three of the eight code-quality standards; the other five were restored afterwards and have not been compared.
 
 ## How to update from upstream
 

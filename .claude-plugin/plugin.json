@@ -1,6 +1,6 @@
 {
   "name": "salasebas-skills",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Sebastian's own agent skills. review-changes: two parallel reviewers, validated findings, optional fix-and-review loop.",
   "author": {
     "name": "Sebastian Sala",
