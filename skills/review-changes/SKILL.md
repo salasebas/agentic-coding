@@ -35,6 +35,8 @@ Review what the user names: uncommitted or staged changes, a branch, a PR link, 
 - **A branch, or a diff against a base:** `git diff <base>...HEAD` (three-dot, so the comparison is against the merge-base)
 - **A PR:** `gh pr diff <number>`, with `gh pr view <number>` for the description
 
+Reviewers read the files on disk. When the change under review is not the checked-out branch, ask before switching to it.
+
 Confirm the diff is non-empty before launching reviewers.
 
 ## Validate
@@ -42,6 +44,7 @@ Confirm the diff is non-empty before launching reviewers.
 Treat each finding as a hypothesis to confirm or refute, not an instruction to modify code. Validate small findings locally. Delegate substantial independent groups to fresh read-only subagents with bounded objectives.
 
 - Every finding needs a concrete case: "this input or situation leads to this wrong result". No case, no finding.
+- For a structure finding, the concrete case is the exact code and the named restructuring that removes it.
 - Re-read the lines and confirm: the caller exists, the value can really be empty, the code really is unused.
 - Propose the smallest fix that works. Prefer fixes that delete code. Never add layers, frameworks or config the problem does not need.
 - No style taste, no "consider", no vague worries.

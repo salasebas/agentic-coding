@@ -43,31 +43,23 @@
 
 - This is a standing request to delegate: use subagents on your own initiative for independent, substantial research, exploration, analysis, review and implementation when doing so keeps the main context focused or improves speed or confidence.
 - Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
-- Start subagents with fresh context rather than inheriting the full parent conversation. Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
+- Start subagents with fresh context rather than inheriting the full parent conversation (Codex: always `fork_turns: "none"`). Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
 - Keep pushes, deletions, and other destructive operations on the main agent.
+- Scouts and reviewers are read-only and must not edit files.
 
-### Subagents (Claude Code)
-- Use `haiku` with effort `medium` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
-- Use `sonnet` with effort `medium` for implementation. Escalate to `high`
-  when a concrete reasoning blocker remains after inspecting relevant code and
-  checking assumptions.
-- Let reviewers, validators, and scouts that must trace flows across modules
-  inherit the session's model. Run reviewers and validators with effort `high`.
-- If a `haiku` scout returns inconclusive or shallow results, escalate to `sonnet` `medium` instead of retrying `haiku`.
-- Scouts and reviews are read-only and must not edit files.
+Route each subagent by role, as model and reasoning effort:
 
-### Subagents (Codex)
-- Use `gpt-6-luna` with `reasoning_effort` `"high"` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
-- Use `gpt-6.1-sol` with `reasoning_effort` `"low"` for read-only scouts that must trace flows across modules or find the likely cause of a bug. Use `"medium"` if the question is ambiguous.
-- Use `gpt-6.1-sol` with reasoning effort `"medium"` for implementation.
-  Escalate to `"high"` when a concrete reasoning blocker remains after
-  inspecting relevant code and checking assumptions.
-- Reserve `"xhigh"` for unresolved, consequential problems where additional
-  reasoning is likely to help. Task size or importance alone is insufficient.
-- If a Luna scout returns inconclusive or shallow results, escalate to `gpt-6.1-sol` `"low"` instead of retrying Luna.
-- Scouts and reviews are read-only and must not edit files.
-- Always use `fork_turns: "none"`.
+| Role | Claude Code | Codex |
+| --- | --- | --- |
+| Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
+| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
+| Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
+| Reviewer or validator | the session's model, `high` | the session's model, `high` |
+
+- If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
+- Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
+- Reserve `xhigh` for unresolved, consequential problems where additional reasoning is likely to help. Task size or importance alone is insufficient.
 
 <!-- context7 -->
 Use Context7 MCP to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service — even well-known ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — your training data may not reflect recent changes. Prefer this over web search for library docs.

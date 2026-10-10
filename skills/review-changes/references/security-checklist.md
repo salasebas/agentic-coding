@@ -1,46 +1,20 @@
 # Security Checklist
 
-Quick reference for web application security. Use alongside the `security-and-hardening` skill.
-
-## Table of Contents
-
-- [Threat Modeling (Start Here)](#threat-modeling-start-here)
-- [Pre-Commit Checks](#pre-commit-checks)
-- [Authentication](#authentication)
-- [Authorization](#authorization)
-- [Input Validation](#input-validation)
-- [Security Headers](#security-headers)
-- [CORS Configuration](#cors-configuration)
-- [Data Protection](#data-protection)
-- [Dependency Security](#dependency-security)
-- [AI / LLM Security](#ai--llm-security)
-- [Error Handling](#error-handling)
-- [OWASP Top 10 Quick Reference](#owasp-top-10-quick-reference)
-- [OWASP Top 10 for LLMs Quick Reference](#owasp-top-10-for-llms-quick-reference)
-
-## Threat Modeling (Start Here)
-
-Before reaching for controls, spend five minutes thinking like an attacker:
-
-- [ ] Trust boundaries mapped (requests, uploads, webhooks, third-party APIs, LLM output, and local values written by processes you don't control)
-- [ ] Assets named (credentials, PII, payment data, admin actions, money movement)
-- [ ] STRIDE run per boundary (Spoofing, Tampering, Repudiation, Info disclosure, DoS, Elevation)
-- [ ] Abuse cases written next to use cases ("how would I misuse this?")
+Quick reference for web application security.
 
 ## Pre-Commit Checks
 
-- [ ] No secrets in code (`git diff --cached | grep -i "password\|secret\|api_key\|token"`)
+- [ ] No secrets in code or in the diff
 - [ ] `.gitignore` covers: `.env`, `.env.local`, `*.pem`, `*.key`
 - [ ] `.env.example` uses placeholder values (not real secrets)
 
 ## Authentication
 
-- [ ] Passwords hashed with bcrypt (≥12 rounds), scrypt, or argon2
+- [ ] Passwords hashed with argon2id, scrypt, or bcrypt (≥12 rounds)
 - [ ] Session cookies: `httpOnly`, `secure`, `sameSite: 'lax'`
 - [ ] Session expiration configured (reasonable max-age)
 - [ ] Rate limiting on login endpoint (≤10 attempts per 15 minutes)
 - [ ] Password reset tokens: time-limited (≤1 hour), single-use
-- [ ] Account lockout after repeated failures (optional, with notification)
 - [ ] MFA supported for sensitive operations (optional but recommended)
 
 ## Authorization
@@ -49,7 +23,7 @@ Before reaching for controls, spend five minutes thinking like an attacker:
 - [ ] Every resource access checks ownership/role (prevents IDOR)
 - [ ] Admin endpoints require admin role verification
 - [ ] API keys scoped to minimum necessary permissions
-- [ ] JWT tokens validated (signature, expiration, issuer)
+- [ ] JWT tokens validated (signature, algorithm, expiration, issuer, audience)
 
 ## Input Validation
 
@@ -65,53 +39,12 @@ Before reaching for controls, spend five minutes thinking like an attacker:
 - [ ] Server-side URL fetches allowlisted; private/reserved IPs blocked (prevent SSRF)
 - [ ] Destructive path operations (delete/move/overwrite): symlinks resolved, allowlisted root, minimum depth, ownership evidence read before the call
 
-### Destructive Path Operations
-
-Containment for a target named by data. Resolve first, then decide — and treat the
-result as a candidate, not as authorization:
-
-```typescript
-import { realpath, readFile } from 'node:fs/promises';
-import { resolve, relative, isAbsolute, join, sep } from 'node:path';
-
-const ALLOWED_ROOTS = ['/var/lib/myapp/sessions']; // an allowlist, not a pattern
-const MIN_DEPTH = 1;                               // so a root is never the target
-
-async function resolveDeletable(candidate: string, expectedOwner: string) {
-  const target = await realpath(resolve(candidate)); // symlinks resolved BEFORE the check
-  const inRoot = ALLOWED_ROOTS.some((root) => {
-    const rel = relative(root, target);
-    // `rel === '..'` / `'../'` only — a plain `startsWith('..')` would also
-    // reject a legitimate child named `..cache`.
-    if (rel === '' || rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) return false;
-    return rel.split(sep).length >= MIN_DEPTH;
-  });
-  if (!inRoot) throw new Error(`refusing: outside allowed roots (${target})`);
-
-  const owner = await readFile(join(target, '.owner'), 'utf8').catch(() => null);
-  if (owner?.trim() !== expectedOwner) throw new Error(`refusing: unproven owner (${target})`);
-  return target;
-}
-```
-
-What this does not do, and must be said where the snippet is copied from:
-
-- **The marker is self-attestation.** Anything that can write inside the root can write
-  `.owner`. `expectedOwner` has to come from authenticated state, and the marker needs
-  integrity protection (restrictive ownership, or a MAC) before it is authorization
-  rather than a consistency check against a misderived target.
-- **Returning a path leaves a check/use race.** Where an untrusted process can swap an
-  ancestor between the check and the call, operate on a descriptor with no-follow,
-  beneath-the-root semantics, or guarantee the hierarchy is immutable for the duration.
-
 ## Security Headers
 
 ```
-Content-Security-Policy: default-src 'self'; script-src 'self'
+Content-Security-Policy: default-src 'self'; script-src 'self'; frame-ancestors 'none'
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-X-XSS-Protection: 0  (disabled, rely on CSP)
 Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: camera=(), microphone=(), geolocation=()
 ```
@@ -127,8 +60,11 @@ cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 })
 
-// NEVER use in production:
-cors({ origin: '*' })  // Allows any origin
+// Only for public resources served without credentials:
+cors({ origin: '*' })
+
+// NEVER reflect the request origin together with credentials:
+cors({ origin: true, credentials: true })
 ```
 
 ## Data Protection
@@ -164,22 +100,7 @@ Never discover dependency lifecycle scripts by first executing an ordinary insta
 3. Record the narrowest native allow/deny policy at the installation boundary and commit it.
 4. Run a clean frozen/immutable install with that policy and verify the required packages still build.
 
-**Point-in-time snapshot:** Package-manager defaults and command names change quickly. Verify this matrix against the pinned client's current official documentation before relying on it.
-
-| Manager version | Native policy |
-|---|---|
-| npm without verified granular approvals | Bootstrap with `npm ci --ignore-scripts`, or persist `ignore-scripts=true` when project-wide blocking is intended. Keep scripts disabled or deliberately upgrade before allowing any reviewed dependency script. |
-| npm 11.18.x (verified on 11.18.0) | Unreviewed dependency scripts run with a warning by default. Enforce `strict-allow-scripts=true` before a normal install, then use the workspace-unaware `npm install-scripts ls` from the installation boundary; keep approvals version-pinned and denials name-wide. |
-| npm 12.x (verified on 12.0.1) | Unreviewed dependency scripts are skipped by default; `strict-allow-scripts=true` makes their presence fail the install before execution. Use the same `npm install-scripts` review and approval flow. |
-| pnpm 11+ | Use `pnpm approve-builds` and commit `allowBuilds` decisions; `strictDepBuilds` defaults to `true`, so unreviewed builds fail. |
-| pnpm 10.26–10.x | Configure `allowBuilds` explicitly, or use `pnpm approve-builds` with the legacy `onlyBuiltDependencies` / `ignoredBuiltDependencies` lists. Set `strictDepBuilds: true`; its v10 default is `false`. |
-| pnpm 10.1–10.25 | `pnpm approve-builds` records the legacy lists; enable `strictDepBuilds` where supported (10.3+). |
-| Older or unknown pnpm | Bootstrap with `pnpm install --frozen-lockfile --ignore-scripts`. Keep scripts disabled unless the pinned version documents an enforceable policy. |
-| Yarn 4.14+ | Dependency postinstalls are disabled by default. Grant only required exceptions with top-level `dependenciesMeta.<package>.built: true`. |
-| Yarn 2–4.13 | Set `enableScripts: false` in `.yarnrc.yml`, then grant only required exceptions with top-level `dependenciesMeta.<package>.built: true`; do not enable scripts globally. |
-| Yarn 1 | Bootstrap with `yarn install --ignore-scripts`; keep scripts disabled unless each required exception is reviewed under the pinned client's documented workflow. |
-
-Authoritative checks: [npm install-scripts](https://docs.npmjs.com/cli/v11/commands/npm-install-scripts/), [install policy](https://docs.npmjs.com/cli/v11/commands/npm-install/), and [CLI releases](https://github.com/npm/cli/releases); [pnpm approve-builds](https://pnpm.io/cli/approve-builds) and [build settings](https://pnpm.io/settings#allowbuilds); [Yarn security](https://yarnpkg.com/features/security) and [manifest](https://yarnpkg.com/configuration/manifest#dependenciesMeta).
+Package-manager defaults and command names change quickly; check the pinned client's current documentation: [npm install-scripts](https://docs.npmjs.com/cli/v11/commands/npm-install-scripts/), [install policy](https://docs.npmjs.com/cli/v11/commands/npm-install/), and [CLI releases](https://github.com/npm/cli/releases); [pnpm approve-builds](https://pnpm.io/cli/approve-builds) and [build settings](https://pnpm.io/settings#allowbuilds); [Yarn security](https://yarnpkg.com/features/security) and [manifest](https://yarnpkg.com/configuration/manifest#dependenciesMeta).
 
 **Supply-chain hygiene** (advisory audits do not catch newly malicious packages):
 - [ ] Exactly one authoritative lockfile per project/workspace root is committed and CI never rewrites it
@@ -217,18 +138,20 @@ res.status(500).json({
 
 ## OWASP Top 10 Quick Reference
 
+The 2025 edition.
+
 | # | Vulnerability | Prevention |
 |---|---|---|
-| 1 | Broken Access Control | Auth checks on every endpoint, ownership verification |
-| 2 | Cryptographic Failures | HTTPS, strong hashing, no secrets in code |
-| 3 | Injection | Parameterized queries, input validation |
-| 4 | Insecure Design | Threat modeling, spec-driven development |
-| 5 | Security Misconfiguration | Security headers, minimal permissions, audit deps |
-| 6 | Vulnerable Components | The ecosystem's dependency audit (`npm audit`, `pip-audit`, ...), keep deps updated, minimal deps |
-| 7 | Auth Failures | Strong passwords, rate limiting, session management |
-| 8 | Data Integrity Failures | Verify updates/dependencies, signed artifacts |
-| 9 | Logging Failures | Log security events, don't log secrets |
-| 10 | SSRF | Validate/allowlist URLs, restrict outbound requests |
+| 1 | Broken Access Control | Auth checks on every endpoint, ownership verification; validate/allowlist URLs for server-side fetches (SSRF) |
+| 2 | Security Misconfiguration | Security headers, minimal permissions, no debug or default settings |
+| 3 | Software Supply Chain Failures | The ecosystem's dependency audit (`npm audit`, `pip-audit`, ...), frozen lockfile, reviewed install scripts |
+| 4 | Cryptographic Failures | HTTPS, strong hashing, no secrets in code |
+| 5 | Injection | Parameterized queries, input validation |
+| 6 | Insecure Design | Threat modeling, abuse cases next to use cases |
+| 7 | Authentication Failures | Strong passwords, rate limiting, session management |
+| 8 | Software or Data Integrity Failures | Verify updates/dependencies, signed artifacts |
+| 9 | Security Logging and Alerting Failures | Log security events, don't log secrets |
+| 10 | Mishandling of Exceptional Conditions | Fail closed, generic errors to the client, no swallowed exceptions |
 
 ## OWASP Top 10 for LLMs Quick Reference
 

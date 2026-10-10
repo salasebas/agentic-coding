@@ -1,16 +1,6 @@
 # Performance Checklist
 
-Quick reference checklist for web application performance. Use alongside the `performance-optimization` skill.
-
-## Table of Contents
-
-- [Core Web Vitals Targets](#core-web-vitals-targets)
-- [TTFB Diagnosis](#ttfb-diagnosis)
-- [Frontend Checklist](#frontend-checklist)
-- [Backend Checklist](#backend-checklist)
-- [Caching Strategies](#caching-strategies)
-- [Measurement Commands](#measurement-commands)
-- [Common Anti-Patterns](#common-anti-patterns)
+Quick reference checklist for web application performance.
 
 ## Core Web Vitals Targets
 
@@ -24,7 +14,6 @@ Quick reference checklist for web application performance. Use alongside the `pe
 
 When TTFB is slow (> 800ms), check each component in DevTools Network waterfall:
 
-- [ ] **DNS resolution** slow → add `<link rel="dns-prefetch">` or `<link rel="preconnect">` for known origins
 - [ ] **TCP/TLS handshake** slow → enable HTTP/2, consider edge deployment, verify keep-alive
 - [ ] **Server processing** slow → profile backend, check slow queries, add caching
 
@@ -38,7 +27,6 @@ When TTFB is slow (> 800ms), check each component in DevTools Network waterfall:
 - [ ] Hero/LCP images use `fetchpriority="high"` and no lazy loading
 
 ### JavaScript
-- [ ] Bundle size under 200KB gzipped (initial load)
 - [ ] Code splitting with dynamic `import()` for routes and heavy features
 - [ ] Tree shaking enabled (verify dependency ships ESM and marks `sideEffects: false`)
 - [ ] No blocking JavaScript in `<head>` (use `defer` or `async`)
@@ -47,7 +35,7 @@ When TTFB is slow (> 800ms), check each component in DevTools Network waterfall:
 - [ ] `useMemo()` / `useCallback()` only where profiling shows benefit
 - [ ] Long tasks (> 50ms) broken up to keep the main thread available — main lever for INP
 - [ ] `yieldToMain` pattern used inside long-running loops so input events can run between chunks
-- [ ] Modern scheduling APIs used where available: `scheduler.yield()` (preferred), `scheduler.postTask()` with priorities, `isInputPending()` to yield only when needed
+- [ ] Modern scheduling APIs used where available: `scheduler.yield()` (preferred), `scheduler.postTask()` with priorities
 - [ ] `requestIdleCallback` for deferrable, non-urgent work (analytics flush, prefetch, warmup)
 - [ ] Non-critical work deferred out of event handlers (e.g. analytics, logging) so the response to the interaction is not delayed
 - [ ] Third-party scripts loaded with `async` / `defer`, audited for size, and fronted by a facade when heavy (chat widgets, embeds)
@@ -63,7 +51,7 @@ When TTFB is slow (> 800ms), check each component in DevTools Network waterfall:
 - [ ] Self-hosted when possible (third-party font CDNs add DNS + TCP + TLS round-trips)
 - [ ] LCP-critical fonts preloaded: `<link rel="preload" as="font" type="font/woff2" crossorigin>`
 - [ ] `font-display: swap` (or `optional` for non-critical) to avoid FOIT blocking render
-- [ ] Subsetted via `unicode-range` to ship only the glyphs each page needs
+- [ ] Subsetted to ship only the glyphs each page needs (`unicode-range` selects which subset file downloads)
 - [ ] Variable fonts considered when multiple weights/styles are required (one file replaces many)
 - [ ] Fallback font metrics adjusted with `size-adjust`, `ascent-override`, `descent-override` to reduce CLS on font swap
 - [ ] System font stack considered before any custom font
@@ -82,14 +70,14 @@ When TTFB is slow (> 800ms), check each component in DevTools Network waterfall:
 - [ ] Long lists use virtualization (e.g., `react-window`)
 - [ ] No unnecessary full-page re-renders
 - [ ] Off-screen sections use `content-visibility: auto` with `contain-intrinsic-size` to skip layout/paint of non-visible areas
-- [ ] No `unload` event handlers and no `Cache-Control: no-store` on HTML responses — preserves back/forward cache (bfcache) eligibility
+- [ ] No `unload` event handlers — preserves back/forward cache (bfcache) eligibility
 
 ## Backend Checklist
 
 ### Database
 - [ ] No N+1 query patterns (use eager loading / joins)
 - [ ] Queries have appropriate indexes
-- [ ] List endpoints paginated (never `SELECT * FROM table`)
+- [ ] List endpoints paginated (never an unbounded `SELECT`)
 - [ ] Connection pooling configured
 - [ ] Slow query logging enabled
 
@@ -118,21 +106,12 @@ When TTFB is slow (> 800ms), check each component in DevTools Network waterfall:
 - [ ] Serverless / autoscaling fronted by a multiplexing proxy (pgbouncer, RDS Proxy) rather than a larger pool
 
 ### API
-- [ ] Response times < 200ms (p95)
 - [ ] No synchronous heavy computation in request handlers
 - [ ] Bulk operations instead of loops of individual calls
 - [ ] Response compression (gzip/brotli)
 - [ ] Appropriate caching (in-memory, Redis, CDN)
 
-### Infrastructure
-- [ ] CDN for static assets
-- [ ] Server located close to users (or edge deployment)
-- [ ] Horizontal scaling configured (if needed)
-- [ ] Health check endpoint for load balancer
-
 ## Caching Strategies
-
-The decision material (which layer, which invalidation strategy, what never to cache) lives in the `performance-optimization` skill. This section covers the read/write patterns and the checklist.
 
 ### Read and write patterns
 
@@ -181,56 +160,3 @@ For a shared cache, the same idea needs a distributed lock, or `stale-while-reva
 - [ ] Eviction policy and memory ceiling set (an unbounded cache is a memory leak)
 - [ ] Hit rate monitored — a cache nobody measures is an assumption, and a low hit rate is pure overhead
 - [ ] Nothing cached whose staleness is a correctness bug (balances, permissions, inventory at checkout)
-
-## Measurement Commands
-
-### INP field data and DevTools workflow
-
-1. **Field data first** — check [CrUX Vis](https://developer.chrome.com/docs/crux/vis) or your RUM tool for real-user INP before optimising
-2. **Identify slow interactions** — open DevTools → Performance panel → record while interacting; look for long tasks triggered by clicks/keystrokes
-3. **Test on mid-range Android** — INP issues often only surface on slower hardware; use a real device or DevTools CPU throttling (4×–6× slowdown)
-
-```bash
-# Lighthouse CLI
-npx lighthouse https://localhost:3000 --output json --output-path ./report.json
-
-# Bundle analysis
-npx webpack-bundle-analyzer stats.json
-# or for Vite:
-npx vite-bundle-visualizer
-
-# Check bundle size
-npx bundlesize
-
-# Web Vitals in code
-import { onLCP, onINP, onCLS } from 'web-vitals';
-onLCP(console.log);
-onINP(console.log);
-onCLS(console.log);
-
-# INP with interaction-level detail (attribution build)
-import { onINP } from 'web-vitals/attribution';
-onINP(({ value, attribution }) => {
-  const { interactionTarget, inputDelay, processingDuration, presentationDelay } = attribution;
-  console.log({ value, interactionTarget, inputDelay, processingDuration, presentationDelay });
-});
-```
-
-## Common Anti-Patterns
-
-| Anti-Pattern | Impact | Fix |
-|---|---|---|
-| N+1 queries | Linear DB load growth | Use joins, includes, or batch loading |
-| Unbounded queries | Memory exhaustion, timeouts | Always paginate, add LIMIT |
-| Missing indexes | Slow reads as data grows | Add indexes for filtered/sorted columns |
-| Indexing without reading the plan | Write cost paid, read gain unproven | `EXPLAIN ANALYZE` before and after; revert if the plan is unchanged |
-| Redundant / unused indexes | Every write pays for them | Audit usage stats, drop what nothing reads |
-| Connection pool per request | Exhausts `max_connections` under load | One pool per process; proxy for serverless |
-| Cache key missing the viewer | One user's data served to another | Key on tenant, viewer, locale, permissions |
-| Unbounded cache | Memory leak wearing an optimization's clothing | Set eviction policy and a memory ceiling |
-| Cache stampede on a hot key | Origin takes full concurrent load at expiry | Coalesce misses, or `stale-while-revalidate` |
-| Layout thrashing | Jank, dropped frames | Batch DOM reads, then batch writes |
-| Unoptimized images | Slow LCP, wasted bandwidth | Use WebP, responsive sizes, lazy load |
-| Large bundles | Slow Time to Interactive | Code split, tree shake, audit deps |
-| Blocking main thread | Poor INP, unresponsive UI | Chunk long tasks with `scheduler.yield()` / `yieldToMain`, offload to Web Workers |
-| Memory leaks | Growing memory, eventual crash | Clean up listeners, intervals, refs |
