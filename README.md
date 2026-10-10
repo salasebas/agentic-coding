@@ -1,14 +1,14 @@
-# How I work
+# Agentic coding
 
-This is how I work with coding agents: the global instructions in [`AGENTS.md`](./AGENTS.md), and the skills I keep installed.
+This is how I work with coding agents: my global instructions in [`rules/`](./rules/), my own skills in [`skills/`](./skills/), and the skills I keep installed.
 
-[`AGENTS.md`](./AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`CLAUDE.md`](./CLAUDE.md) is a symlink to it, so Claude Code reads the same instructions.
+[`rules/AGENTS.md`](./rules/AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`rules/CLAUDE.md`](./rules/CLAUDE.md) is a symlink to it, for the tools that read `CLAUDE.md`.
 
 ## Mine
 
 | Skill | Source | Install |
 | --- | --- | --- |
-| `review-changes` | [SKILL.md](./skills/review-changes/SKILL.md) | `npx skills add salasebas/how-i-work -g -s review-changes` |
+| `review-changes` | [SKILL.md](./skills/review-changes/SKILL.md) | `npx skills add salasebas/agentic-coding -g -s review-changes` |
 
 `review-changes` is assembled from upstream review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records which part came from which skill.
 
@@ -18,8 +18,8 @@ The repo is also a plugin marketplace named `salasebas`, with one plugin, `salas
 
 | Harness | Install |
 | --- | --- |
-| Claude Code | `claude plugin marketplace add salasebas/how-i-work`, then `claude plugin install salasebas-skills@salasebas` |
-| Codex | `codex plugin marketplace add salasebas/how-i-work`, then `codex plugin add salasebas-skills` |
+| Claude Code | `claude plugin marketplace add salasebas/agentic-coding`, then `claude plugin install salasebas-skills@salasebas` |
+| Codex | `codex plugin marketplace add salasebas/agentic-coding`, then `codex plugin add salasebas-skills` |
 
 I do not author the skills below, and I do not copy them into this repo. Upstream is the source of truth. Each entry links to the skill and gives the command that installs it again. [`sources.json`](./sources.json) records the folder hash of the copy I last installed, so a rename or deletion upstream is visible. It is not a backup of the skill text.
 
