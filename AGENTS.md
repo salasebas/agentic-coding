@@ -15,21 +15,19 @@
 - Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
 - Understand the surrounding implementation before modifying it.
 
-# Package Manager Preferences
+## Package Manager Preferences
 - Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
 - Use `uv` for Python package management and virtual environments when compatible with the project.
 
 ## Review workflow
-- Give the reviewer a fresh context containing the original requirements,
-  the exact diff scope, and access to relevant code and project instructions.
-- Request actionable correctness, regression, readability & simplicity, architecture, security, and performance findings. Require a concrete failure scenario, location, impact, and evidence.
-  Separate optional suggestions from required fixes.
-  Zero findings is an acceptable outcome.
-- Deduplicate findings before validation. Treat each finding as a hypothesis
-  to confirm or refute, not an instruction to modify code.
-- Validate small findings locally. Delegate substantial independent groups
-  to fresh read-only subagents with bounded objectives.
-- You must validate every findings before presenting them to the User.
+- When asked to review changes, use the `review-changes` skill.
+- Without the skill, give the reviewer a fresh context containing the original
+  requirements, the exact diff scope, and access to relevant code and project
+  instructions. Treat each finding as a hypothesis to confirm or refute, not an
+  instruction to modify code.
+- You must validate every finding before presenting it to the User.
+- Reviewers run on the session's model. Review with another model only when
+  the User names it.
 
 ## Test value
 - Before adding tests, identify the repository-owned failure, independent
@@ -43,18 +41,21 @@
 
 ## Subagents
 
-v1: Default: keep work on the main agent. Do not spawn unless it clearly
-improves focus, speed, or confidence.
-
-- Delegate substantial, independent work when it improves focus, speed, or confidence; handle small or tightly coupled tasks locally. Give each subagent a bounded objective and expected output.
-- Assign non-overlapping write ownership. Keep delegation and integration with the coordinator, who remains available to the user.
+- This is a standing request to delegate: use subagents on your own initiative for independent, substantial research, exploration, analysis, review and implementation when doing so keeps the main context focused or improves speed or confidence.
+- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
 - Start subagents with fresh context rather than inheriting the full parent conversation. Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
-
-v2: - Use subagents for independent, substantial research, exploration, analysis and implementation when doing so keeps the main context focused or improves speed or confidence.
-- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it save$
-- Spawn subagents without inherit parent's context.
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
 - Keep pushes, deletions, and other destructive operations on the main agent.
+
+### Subagents (Claude Code)
+- Use `haiku` with effort `low` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.
+- Use `sonnet` with effort `medium` for implementation. Escalate to `high`
+  when a concrete reasoning blocker remains after inspecting relevant code and
+  checking assumptions.
+- Let reviewers, validators, and scouts that must trace flows across modules
+  inherit the session's model.
+- If a `haiku` scout returns inconclusive or shallow results, escalate to `sonnet` `low` instead of retrying `haiku`.
+- Scouts and reviews are read-only and must not edit files.
 
 ### Subagents (Codex)
 - Use `gpt-6-luna` with `reasoning_effort` `"high"` for simple read-only scouting: grep, locating files, extracting data, and parallel scouting.

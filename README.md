@@ -2,7 +2,15 @@
 
 This is how I work with coding agents: the global instructions in [`AGENTS.md`](./AGENTS.md), and the skills I keep installed.
 
-[`AGENTS.md`](./AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`.
+[`AGENTS.md`](./AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`CLAUDE.md`](./CLAUDE.md) is a symlink to it, so Claude Code reads the same instructions.
+
+## Mine
+
+| Skill | Source | Install |
+| --- | --- | --- |
+| `review-changes` | [SKILL.md](./skills/review-changes/SKILL.md) | `npx skills add salasebas/how-i-work -g -s review-changes` |
+
+`review-changes` is assembled from upstream review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records which part came from which skill.
 
 I do not author the skills below, and I do not copy them into this repo. Upstream is the source of truth. Each entry links to the skill and gives the command that installs it again. [`sources.json`](./sources.json) records the folder hash of the copy I last installed, so a rename or deletion upstream is visible. It is not a backup of the skill text.
 
