@@ -13,7 +13,7 @@ Above all, be **ambitious** about code structure. Do not merely identify local c
 - Assume there is often a "code judo" move available: a re-organization that uses the existing architecture more effectively and makes the change dramatically simpler and more elegant.
 - If you see a path to delete complexity rather than rearrange it, push hard for that path.
 
-**Do not let a PR push a file from under 1k lines to over 1k lines without a very strong reason.**
+**Do not let a change push a file from under 1k lines to over 1k lines without a very strong reason.**
 - Treat this as a strong code-quality smell by default.
 - Prefer extracting helpers, subcomponents, modules, or local abstractions instead of letting a file sprawl past 1000 lines.
 - If the diff crosses that threshold, explicitly ask whether the code should be decomposed first.
@@ -72,9 +72,9 @@ Prefer a smaller number of high-conviction comments over a long list of cosmetic
 
 Treat these as presumptive blockers unless the author can justify them clearly:
 
-- the PR preserves a lot of incidental complexity when there is a plausible code-judo move that would delete it
-- the PR pushes a file from below 1000 lines to above 1000 lines
-- the PR adds ad-hoc branching that makes an existing flow more tangled
-- the PR solves a local problem by scattering feature checks across shared code
-- the PR adds an unnecessary abstraction, wrapper, or cast-heavy contract that makes the design more indirect
-- the PR duplicates an existing helper or puts logic in the wrong layer when there is a clear canonical home
+- the change preserves a lot of incidental complexity when there is a plausible code-judo move that would delete it
+- the change pushes a file from below 1000 lines to above 1000 lines
+- the change adds ad-hoc branching that makes an existing flow more tangled
+- the change solves a local problem by scattering feature checks across shared code
+- the change adds an unnecessary abstraction, wrapper, or cast-heavy contract that makes the design more indirect
+- the change duplicates an existing helper or puts logic in the wrong layer when there is a clear canonical home

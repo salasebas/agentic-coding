@@ -16,7 +16,7 @@ Review a change like the senior developer who will be paged when it breaks.
 3. Launch both reviewers as subagents in the same message, each with a fresh context:
    - **Bugs reviewer** follows [`reviewers/bugs.md`](reviewers/bugs.md): bugs, breakages, security, devex regressions, feature-flag leaks, and other branch-audit risks.
    - **Structure reviewer** follows [`reviewers/structure.md`](reviewers/structure.md): maintainability, structure, file-size growth, spaghetti, abstractions, and codebase-health risks.
-4. Pass each subagent the same scoped diff/file context and the absolute path of its reviewer file, and ask it to return prioritized findings with file references and evidence. Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
+4. Pass each subagent the same scoped diff/file context and the absolute path of its reviewer file, and ask it to return findings with file references and evidence, grouped as Must fix, Should fix or Nice to have as defined under [Report](#report). Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
 5. After both finish, deduplicate findings across reviewers. Weight overlapping findings more heavily, and resolve disagreements with your own judgment.
 6. Validate every finding. See [Validate](#validate).
 7. Report. See [Report](#report).
@@ -58,7 +58,7 @@ Very simple language: short sentences, everyday words. Explain a technical term 
 Start with `What this change does:` in two or three sentences.
 
 Then the findings in three groups, skip empty groups:
-- **Must fix:** bug, security, data loss, breaks at the expected load.
+- **Must fix:** bug, security, data loss, breaks at the expected load, a presumptive blocker from the structure reviewer.
 - **Should fix:** risky code without a test, real slowness, duplication, a function that mixes jobs, code that should not exist.
 - **Nice to have:** small speed-ups, shorter forms.
 
