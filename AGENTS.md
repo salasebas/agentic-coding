@@ -13,6 +13,17 @@
 
 - When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
 
+## Test value
+
+- Before adding tests, identify the repository-owned failure, independent
+  expected outcome, and gap in existing coverage.
+- Choose the cheapest test layer that reaches the real failure conditions.
+  Extend existing coverage when it already owns the scenario.
+- Review assertions and fixtures against requirements, not implementation.
+  Passing tests or another agent's agreement do not establish correctness.
+- Consolidate coverage only after confirming equivalent triggering conditions,
+  or retire the obsolete obligation. Preserve meaningful regressions.
+  
 ## Subagents
 
 - Use subagents for independent, substantial research, exploration, analysis and implementation when doing so keeps the main context focused or improves speed or confidence.
