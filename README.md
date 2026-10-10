@@ -2,7 +2,7 @@
 
 This is how I work with coding agents: my global instructions in [`rules/`](./rules/), my own skills in [`skills/`](./skills/), and the skills I keep installed.
 
-[`rules/AGENTS.md`](./rules/AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`rules/CLAUDE.md`](./rules/CLAUDE.md) is a symlink to it, for the tools that read `CLAUDE.md`.
+[`rules/AGENTS.md`](./rules/AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`rules/CLAUDE.md`](./rules/CLAUDE.md) is a symlink to it, for the tools that read `CLAUDE.md`. The frontmatter at the top of `AGENTS.md` is for Cursor, which reads the file as an always-applied rule through `~/.cursor/rules/agents.mdc`.
 
 ## Mine
 
