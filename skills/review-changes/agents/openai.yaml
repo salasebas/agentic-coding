@@ -1,0 +1,3 @@
+interface:
+  display_name: "Review Changes"
+  short_description: "Review a change with two reviewers, validated"

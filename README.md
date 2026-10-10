@@ -12,6 +12,13 @@ This is how I work with coding agents: the global instructions in [`AGENTS.md`](
 
 `review-changes` is assembled from upstream review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records which part came from which skill.
 
+The repo is also a plugin marketplace named `salasebas`, with one plugin, `how-i-work`. The plugin version lives in [`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json).
+
+| Harness | Install |
+| --- | --- |
+| Claude Code | `claude plugin marketplace add salasebas/how-i-work`, then `claude plugin install how-i-work@salasebas` |
+| Codex | `codex plugin marketplace add salasebas/how-i-work`, then `codex plugin add how-i-work` |
+
 I do not author the skills below, and I do not copy them into this repo. Upstream is the source of truth. Each entry links to the skill and gives the command that installs it again. [`sources.json`](./sources.json) records the folder hash of the copy I last installed, so a rename or deletion upstream is visible. It is not a backup of the skill text.
 
 ## Engineering
