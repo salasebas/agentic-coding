@@ -57,7 +57,7 @@ Does the code do what it claims to do?
 
 ### Security
 
-Does the change introduce vulnerabilities?
+Does the change introduce vulnerabilities? When the diff touches authentication, authorization, user input, secrets, headers, CORS, dependencies, or LLM features, read [`../references/security-checklist.md`](../references/security-checklist.md).
 
 - Is user input validated and sanitized?
 - Are secrets kept out of code, logs, and version control?
@@ -70,7 +70,7 @@ Does the change introduce vulnerabilities?
 
 ### Performance
 
-Does the change introduce performance problems?
+Does the change introduce performance problems? When the diff touches database queries, API endpoints, caching, rendering, or bundle contents, read [`../references/performance-checklist.md`](../references/performance-checklist.md).
 
 - Any N+1 query patterns?
 - Any unbounded loops or unconstrained data fetching?

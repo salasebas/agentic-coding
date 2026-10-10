@@ -9,7 +9,7 @@
   },
   "plugins": [
     {
-      "name": "how-i-work",
+      "name": "salasebas-skills",
       "source": "./",
       "description": "review-changes: two parallel reviewers, validated findings, optional fix-and-review loop.",
       "category": "engineering",

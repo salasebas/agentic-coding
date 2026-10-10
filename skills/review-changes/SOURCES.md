@@ -1,28 +1,74 @@
 # Sources
 
-`review-changes` is assembled from upstream review skills. The text is copied with as few edits as possible; this file records what came from where. Agents do not need this file to run the skill.
+`review-changes` is assembled from upstream review skills. The upstream authors maintain the wording; this skill copies it and changes as little as possible. Agents do not need this file to run the skill.
 
-Upstream copies were read on 2026-10-10.
+## Pinned upstream files
 
-| Part of this skill | Upstream | Licence |
+Each row is one upstream file, the commit that last changed it when it was copied, and where its text lives here.
+
+| Upstream file | Pinned commit | Copied into | Licence |
+| --- | --- | --- | --- |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `reviewers/bugs.md`, `reviewers/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
+| `addyosmani/agent-skills` `references/security-checklist.md` | `623af9870488` (2026-09-18) | `references/security-checklist.md` | MIT, Copyright (c) 2025 Addy Osmani |
+| `addyosmani/agent-skills` `references/performance-checklist.md` | `bfc9e32ddfd6` (2026-08-27) | `references/performance-checklist.md` | MIT, Copyright (c) 2025 Addy Osmani |
+| [`cursor/plugins`](https://github.com/cursor/plugins) `thermos/skills/thermos/SKILL.md` | `5080d38e4c52` (2026-05-28) | `SKILL.md` | MIT, Copyright (c) 2026 Cursor |
+| `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/bugs.md` | MIT, Copyright (c) 2026 Cursor |
+| `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/structure.md` | MIT, Copyright (c) 2026 Cursor |
+| [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail) `skills/ponytail-review/SKILL.md` | `2a1fe842d078` (2026-10-08) | `SKILL.md` | MIT, Copyright (c) 2026 DietrichGebert |
+| [`2dmurali/review-loop-skill`](https://github.com/2dmurali/review-loop-skill) `review-loop/SKILL.md` | `dec43b15b0e3` (2026-05-08) | `SKILL.md` | MIT, as stated in its `SKILL.md`; the repository has no licence file |
+
+## What each file takes
+
+| File here | Section | Upstream |
 | --- | --- | --- |
-| `SKILL.md`: approval standard, "Lead with what matters", "Honesty in Review" | [`addyosmani/agent-skills` `code-review-and-quality`](https://github.com/addyosmani/agent-skills/blob/main/skills/code-review-and-quality/SKILL.md) | MIT, Copyright (c) 2025 Addy Osmani |
-| `SKILL.md`: workflow steps 1 to 5 (two parallel reviewers, then synthesis) | [`cursor/plugins` `thermos`](https://github.com/cursor/plugins/blob/main/thermos/skills/thermos/SKILL.md) | MIT, Copyright (c) 2026 Cursor |
-| `SKILL.md`: opening line, scope default, "Validate" bullets, "Report" format | [`DietrichGebert/ponytail` `ponytail-review`](https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail-review/SKILL.md) | MIT, Copyright (c) 2026 DietrichGebert |
-| `SKILL.md`: "Loop" defaults, stop conditions, revision and memory rules | [`2dmurali/review-loop-skill` `review-loop`](https://github.com/2dmurali/review-loop-skill/blob/main/review-loop/SKILL.md) | MIT, as stated in its `SKILL.md`; the repository has no licence file |
-| `reviewers/bugs.md`: prompt, scope, guidelines, final response, critical rules | [`cursor/plugins` `thermo-nuclear-review`](https://github.com/cursor/plugins/blob/main/thermos/skills/thermo-nuclear-review/SKILL.md) | MIT, Copyright (c) 2026 Cursor |
-| `reviewers/bugs.md`: tests first, correctness, security, performance, verification | `addyosmani/agent-skills` `code-review-and-quality` | MIT, Copyright (c) 2025 Addy Osmani |
-| `reviewers/structure.md`: opening, "Standards", "Approval Bar" | [`cursor/plugins` `thermo-nuclear-code-quality-review`](https://github.com/cursor/plugins/blob/main/thermos/skills/thermo-nuclear-code-quality-review/SKILL.md) | MIT, Copyright (c) 2026 Cursor |
-| `reviewers/structure.md`: readability, architecture, structural remedies, change sizing, dead code, dependencies | `addyosmani/agent-skills` `code-review-and-quality` | MIT, Copyright (c) 2025 Addy Osmani |
+| `SKILL.md` | Approval standard, "Lead with what matters", "Honesty in Review" | `code-review-and-quality` |
+| `SKILL.md` | Workflow steps 1 to 5 | `thermos` |
+| `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
+| `SKILL.md` | "Loop" defaults, stop conditions, revision and memory rules | `review-loop` |
+| `reviewers/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
+| `reviewers/bugs.md` | Tests first, correctness, security, performance, verification | `code-review-and-quality` |
+| `reviewers/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
+| `reviewers/structure.md` | Readability, architecture, structural remedies, change sizing, dead code, dependencies | `code-review-and-quality` |
+| `references/*.md` | Whole file, unedited | `agent-skills` `references/` |
 
-The scope commands, the two-reviewer default, the session-model rule, and the validation completion rule are written for this repo.
+## Local edits
+
+These are the only places where the text differs from upstream. Reapply them after every update and add no others.
+
+- Heading levels are shifted so each file has one title, and the numbers are dropped from the axis headings ("### 1. Correctness" is "### Correctness") and from the three code-quality standards.
+- Pointers to skills that are not installed here are removed: `security-and-hardening`, `performance-optimization`, `constraint-driven-development`.
+- The security and performance axes point at `references/` with the condition for reading each checklist.
+- In "Report", "Very simple English" reads "Very simple language".
+- In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
+
+Written for this repo, with no upstream: the scope commands, the two-reviewer default, the session-model rule, and the validation completion rule.
 
 ## Left out on purpose
 
-- From `code-review-and-quality`: the multi-model review pattern, review speed, handling disagreements, change descriptions, the splitting strategies table, the review checklist, common rationalisations, red flags, and the pointers to skills that are not installed here.
-- From `thermo-nuclear-code-quality-review`: the rules that `code-review-and-quality` already carries (the 1000-line rule, spaghetti growth, type boundaries, canonical layer), the list of preferred remedies, and the review tone phrases.
+- From `code-review-and-quality`: the multi-model review pattern, review speed, handling disagreements, change descriptions, the splitting strategies table, the severity prefix table, the review checklist, common rationalisations, and red flags.
+- From `thermo-nuclear-code-quality-review`: the rules that `code-review-and-quality` already carries (the 1000-line rule, spaghetti growth, type boundaries, canonical layer), the primary questions, the list of what to flag, the list of preferred remedies, and the review tone phrases.
 - From `ponytail-review`: the `shortcut:` comment convention and the `Lean:` line.
 - From `review-loop`: the 1 to 10 score, the quality gate, and model selection.
+
+## How to update from upstream
+
+1. For each row of "Pinned upstream files", get the commit that last changed the file:
+
+   ```bash
+   gh api "repos/<owner>/<repo>/commits?path=<path>&per_page=1" --jq '.[0].sha'
+   ```
+
+   If it starts with the pinned commit, that file has not changed; skip it.
+2. For a file that changed, read what changed since the pin:
+
+   ```bash
+   gh api "repos/<owner>/<repo>/compare/<pinned>...<new>" --jq '.files[] | select(.filename == "<path>") | .patch'
+   ```
+
+3. Paste the new upstream wording over the matching section here. Copy and paste; do not reword. For `references/*.md`, replace the whole file.
+4. Reapply only the edits listed under "Local edits". If upstream added a section, decide whether it belongs here or under "Left out on purpose", and record the decision in this file.
+5. Update the pinned commit and date in the table.
+6. Bump `version` in `.claude-plugin/plugin.json`.
 
 ## MIT License
 
