@@ -46,15 +46,16 @@ Written for this repo, with no upstream: the scope commands and the checkout rul
 
 ## Why the reviewers are short
 
-The question lists and checklists were removed after a comparison on three merged pull requests (two in `saml-rs`, one in `better-auth-rb`), run on 2026-10-10 with one reviewer per variant and no repeats.
+The question lists and checklists were removed after two comparisons on merged pull requests, run on 2026-10-10 with one reviewer per variant and no repeats. Each finding was checked against the code afterwards.
 
-| Reviewer | With lists and checklists | Short |
-| --- | --- | --- |
-| Bugs, findings confirmed against the code | 3 of 5 | 7 of 7 |
-| Structure, findings confirmed (one pull request) | 2 of 3 | 3 of 3 |
-| Tokens per bugs review, mean | 95k | 91k |
+| Round | Pull requests | Bugs, confirmed: with lists | Bugs, confirmed: short | Tokens per bugs review |
+| --- | --- | --- | --- | --- |
+| 1, default effort | `saml-rs` #166 and #178, `better-auth-rb` #98 | 3 of 5 | 7 of 7 | 95k against 91k |
+| 2, `high` effort | `compitienda` #1569 | 5 of 5 | 5 of 5 | 146k against 150k |
 
-Both variants found the two shared defects. Only the short one found the most severe defect of the run. The sample is small, so read this as "the lists did not help", not as "short is better". Before adding a list back, run the same comparison. The structure reviewer tested carried three of the eight code-quality standards; the other five were restored afterwards and have not been compared.
+Each variant found one real defect the other missed, which is within the noise between runs. The structure reviewers agreed on four of five findings in round 2. The lists added no finding and no saving, so the short files win on upkeep. Before adding a list back, run the same comparison.
+
+The structure reviewer in round 1 carried three of the eight code-quality standards; round 2 used all eight.
 
 ## How to update from upstream
 
