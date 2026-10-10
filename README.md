@@ -73,3 +73,7 @@ I do not author the skills below, and I do not copy them into this repo. Upstrea
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | `npx skills add vercel-labs/skills -g -s find-skills` |
 | `git-commit` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | `npx skills add github/awesome-copilot -g -s git-commit` |
 | `writing-documentation-with-diataxis` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | `npx skills add sammcj/agentic-coding -g -s writing-documentation-with-diataxis` |
+
+## License
+
+[MIT](./LICENSE). `review-changes` includes text from other MIT-licensed skills; [`SOURCES.md`](./skills/review-changes/SOURCES.md) names them.
