@@ -17,10 +17,6 @@ alwaysApply: true
 ## Documentation
 - When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
 
-## Package managers
-- Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
-- Use `uv` for Python package management and virtual environments when compatible with the project.
-
 ## Review
 - To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a fresh-context subagent.
 - Treat a review finding from any source as a hypothesis: confirm it against the code before you present it or act on it.

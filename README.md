@@ -15,6 +15,11 @@ Rules for external tools live in [`rules/integrations/`](./rules/integrations/),
 | Skill | Source | Install |
 | --- | --- | --- |
 | `review-changes` | [SKILL.md](./skills/review-changes/SKILL.md) | `npx skills add salasebas/skills -g -s review-changes` |
+| `python-development` | [SKILL.md](./skills/python-development/SKILL.md) | `npx skills add salasebas/skills -g -s python-development` |
+| `rust-development` | [SKILL.md](./skills/rust-development/SKILL.md) | `npx skills add salasebas/skills -g -s rust-development` |
+| `typescript-development` | [SKILL.md](./skills/typescript-development/SKILL.md) | `npx skills add salasebas/skills -g -s typescript-development` |
+
+The three language skills are copies of sammcj's, kept here so they stay available; [`skills/THIRD_PARTY.md`](./skills/THIRD_PARTY.md) has their attribution. They load only when a project uses that language, which keeps those rules out of the global instructions.
 
 `review-changes` is assembled from upstream review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records which part came from which skill.
 
@@ -54,10 +59,8 @@ I do not author the skills below, and I do not copy them into this repo. Upstrea
 | `code-review` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/engineering/code-review/SKILL.md) | `npx skills add mattpocock/skills -g -s code-review` |
 | `pr` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/engineering/pr/SKILL.md) | `npx skills add mattpocock/skills -g -s pr` |
 | `retro` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/engineering/retro/SKILL.md) | `npx skills add mattpocock/skills -g -s retro` |
-| `wizard` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/engineering/wizard/SKILL.md) | `npx skills add mattpocock/skills -g -s wizard` |
 | `handoff` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/handoff/SKILL.md) | `npx skills add mattpocock/skills -g -s handoff` |
 | `wait-what` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/wait-what/SKILL.md) | `npx skills add mattpocock/skills -g -s wait-what` |
-| `to-questionnaire` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/to-questionnaire/SKILL.md) | `npx skills add mattpocock/skills -g -s to-questionnaire` |
 | `teach` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/teach/SKILL.md) | `npx skills add mattpocock/skills -g -s teach` |
 | `writing-for-agents` | [SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/writing-for-agents/SKILL.md) | `npx skills add mattpocock/skills -g -s writing-for-agents` |
 
@@ -85,4 +88,4 @@ I do not author the skills below, and I do not copy them into this repo. Upstrea
 
 ## License
 
-[MIT](./LICENSE). `review-changes` includes text from other MIT-licensed skills; [`SOURCES.md`](./skills/review-changes/SOURCES.md) names them.
+[MIT](./LICENSE). `review-changes` includes text from other MIT-licensed skills; [`SOURCES.md`](./skills/review-changes/SOURCES.md) names them. The skills listed in [`skills/THIRD_PARTY.md`](./skills/THIRD_PARTY.md) keep their own licence.

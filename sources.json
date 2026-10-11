@@ -176,26 +176,12 @@
       "skillFolderHash": "3df14e2d3a89459bf300614be9247e3ce74798f8",
       "updatedAt": "2026-10-06T05:10:36.941Z"
     },
-    "to-questionnaire": {
-      "source": "mattpocock/skills",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/to-questionnaire/SKILL.md",
-      "skillFolderHash": "46dfbeeba12a9e52eef446676f42e7551023d9a9",
-      "updatedAt": "2026-10-06T05:10:38.617Z"
-    },
     "wait-what": {
       "source": "mattpocock/skills",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/wait-what/SKILL.md",
       "skillFolderHash": "c8b050e6b8c711be1a9008ceacb2126914f0763e",
       "updatedAt": "2026-10-06T05:10:40.083Z"
-    },
-    "wizard": {
-      "source": "mattpocock/skills",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/wizard/SKILL.md",
-      "skillFolderHash": "0a163daf092c6f361158ca9627e81f2cb5230574",
-      "updatedAt": "2026-10-06T05:10:41.587Z"
     },
     "writing-for-agents": {
       "source": "mattpocock/skills",
