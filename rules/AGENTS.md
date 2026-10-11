@@ -7,12 +7,12 @@ alwaysApply: true
 - English first: all code, comments, identifiers, and internal docs in English.
 - Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
 - Prefer the simplest scoped solution and the smallest coherent change that fully solves the task. Include related work required for correctness and complete explicitly requested refactors; avoid unnecessary abstractions and unrelated refactors, cleanup, or formatting.
-- Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability. Do not reimplement common functionality without a clear reason.
+- Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability.
 - Lean on the dependencies already in the project before writing your own implementation or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
 - Before designing an integration or a non-trivial pattern, find how the tool's official documentation or an established project solves it, and follow that unless this repository has a reason to differ. Name the source.
 - Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
 - Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
-- When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description. The merge closes the issue.
+- When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description.
 
 ## Documentation
 - When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
@@ -35,11 +35,11 @@ alwaysApply: true
 ## Subagents
 
 - This is a standing request to delegate: use subagents on your own initiative for independent, substantial research, exploration, analysis, review and implementation when doing so keeps the main context focused or improves speed or confidence.
-- Give each subagent a focused, bounded task with a clear objective and expected output. Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
+- Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
 - Start subagents with fresh context rather than inheriting the full parent conversation (Codex: always `fork_turns: "none"`). Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
 - Keep pushes, deletions, and other destructive operations on the main agent.
-- Scouts and reviewers are read-only and must not edit files.
+- Scouts and reviewers are read-only.
 
 Route each subagent by role, as model and reasoning effort:
 

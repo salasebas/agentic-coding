@@ -21,8 +21,6 @@ Review a change like the senior developer who will be paged when it breaks.
 6. Validate every finding. See [Validate](#validate).
 7. Report. See [Report](#report).
 
-Two reviewers is the default. Run a single reviewer only when the user asks for one; when the harness has no subagents, run both reviewer files yourself, one after the other.
-
 Reviewers and validators run on the session's model, and they are read-only: the review lists findings, changes no code. [Loop](#loop) is the one mode that edits.
 
 ## Scope
@@ -41,7 +39,7 @@ Confirm the diff is non-empty before launching reviewers.
 
 ## Validate
 
-Treat each finding as a hypothesis to confirm or refute, not an instruction to modify code. Validate small findings locally. Delegate substantial independent groups to fresh read-only subagents with bounded objectives.
+Treat each finding as a hypothesis to confirm or refute, not an instruction to modify code.
 
 - Every finding needs a concrete case: "this input or situation leads to this wrong result". No case, no finding.
 - For a structure finding, the concrete case is the exact code and the named restructuring that removes it.
