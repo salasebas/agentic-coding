@@ -59,6 +59,7 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | [`cursor/plugins`](https://github.com/cursor/plugins), `pstack` | `technical-writing`, `unslop` |
 | `cursor/plugins`, `cursor-team-kit` | `deslop` |
 | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills) | `vercel-composition-patterns`, `vercel-react-best-practices`, `web-design-guidelines` |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | `code-simplification` |
 | [`vojtaholik/good-css`](https://github.com/vojtaholik/good-css) | `good-css` |
 | [`motiondivision/ai-kit`](https://github.com/motiondivision/ai-kit) | `motion` |
 | [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser) | `agent-browser` |
