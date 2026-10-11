@@ -4,6 +4,7 @@ These skills are copies of other people's work, kept here so they stay available
 
 | Skill | Copied from | Commit | Licence | Changes |
 | --- | --- | --- | --- | --- |
+| `no-comments` | [`cursor/plugins`](https://github.com/cursor/plugins) `pstack/skills/no-comments` and `pstack/agents/comment-sicko.md` | `e8d856f0273b`, `99559f2f5204` | MIT | The agent's text moves to `references/comment-sicko.md` and a fresh-context subagent receives it. Calls to pstack's `how`, `why` and `architect` skills and its principle skills become plain instructions |
 | `python-development` | [`sammcj/agentic-coding`](https://github.com/sammcj/agentic-coding) `Skills/python-development` | `2f25cede7b08` | Apache-2.0 | None |
 | `rust-development` | `sammcj/agentic-coding` `Skills/rust-development` | `2f25cede7b08` | Apache-2.0 | None |
 | `typescript-development` | `sammcj/agentic-coding` `Skills/typescript-development` | `2f25cede7b08` | Apache-2.0 | Adds the `pnpm` line |
