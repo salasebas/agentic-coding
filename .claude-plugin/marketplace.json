@@ -11,11 +11,16 @@
     {
       "name": "salasebas-skills",
       "source": "./",
-      "description": "review-changes: bugs and structure review, validated findings, optional fix-and-review loop.",
+      "description": "Review-changes, no-comments, and conventions for Python, TypeScript, Rust and Go.",
       "category": "engineering",
       "keywords": [
         "skills",
-        "code-review"
+        "code-review",
+        "comments",
+        "python",
+        "typescript",
+        "rust",
+        "go"
       ]
     }
   ]
