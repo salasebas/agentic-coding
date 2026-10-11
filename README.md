@@ -4,6 +4,12 @@ This is how I work with coding agents: my global instructions in [`rules/`](./ru
 
 [`rules/AGENTS.md`](./rules/AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`rules/CLAUDE.md`](./rules/CLAUDE.md) is a symlink to it, for the tools that read `CLAUDE.md`. The frontmatter at the top of `AGENTS.md` is for Cursor, which reads the file as an always-applied rule through `~/.cursor/rules/agents.mdc`.
 
+Rules for external tools live in [`rules/integrations/`](./rules/integrations/), one file per tool, so they can be installed or left out without touching `AGENTS.md`.
+
+| Rule | For | Install as |
+| --- | --- | --- |
+| [`context7.md`](./rules/integrations/context7.md) | The Context7 MCP server | `~/.claude/rules/context7.md` for Claude Code, `~/.cursor/rules/context7.mdc` for Cursor. Codex and Grok read only `AGENTS.md`: append the file there if you use Context7 with them. |
+
 ## Mine
 
 | Skill | Source | Install |
