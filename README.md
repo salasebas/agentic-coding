@@ -45,11 +45,7 @@ As a plugin:
 | Claude Code | `~/.claude/CLAUDE.md`, a symlink to `~/.agents/AGENTS.md` |
 | Cursor | `~/.cursor/rules/agents.mdc`, a symlink to `~/.agents/AGENTS.md`. The frontmatter at the top of the file is for Cursor. |
 
-Rules for one external tool live in [`rules/integrations/`](./rules/integrations/), so they install separately:
-
-| Rule | Where the file goes |
-| --- | --- |
-| [`context7.md`](./rules/integrations/context7.md) | `~/.claude/rules/context7.md` for Claude Code, `~/.cursor/rules/context7.mdc` for Cursor. Codex and Grok read only `AGENTS.md`, so append the block there. |
+The block between the `<!-- context7 -->` markers at the end of the file is Context7's own rule for its MCP server, pasted as they publish it.
 
 ## Skills installed from other people
 
