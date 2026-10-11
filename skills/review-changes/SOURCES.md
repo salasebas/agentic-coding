@@ -32,7 +32,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 These are the only places where the text differs from upstream. Reapply them after every update and add no others.
 
 - Heading levels are shifted so each file has one title, and the numbers are dropped from the three code-quality standards.
-- In "Report", "Very simple English" reads "Very simple language", and Must fix also takes a presumptive blocker from the structure reviewer.
+- In "Report", "Very simple English" reads "Very simple language".
 - The reviewers say "the change" where upstream says "this PR" or "the branch", and Must fix where it says High priority, so one skill serves any scope and one scale.
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.

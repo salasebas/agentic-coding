@@ -58,7 +58,7 @@ Very simple language: short sentences, everyday words. Explain a technical term 
 Start with `What this change does:` in two or three sentences.
 
 Then the findings in three groups, skip empty groups:
-- **Must fix:** bug, security, data loss, breaks at the expected load, a presumptive blocker from the structure reviewer.
+- **Must fix:** bug, security, data loss, breaks at the expected load.
 - **Should fix:** risky code without a test, real slowness, duplication, a function that mixes jobs, code that should not exist.
 - **Nice to have:** small speed-ups, shorter forms.
 
