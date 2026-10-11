@@ -38,7 +38,7 @@ These are the only places where the text differs from upstream. Reapply them aft
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
 - In "Loop", step 5 reads "Go back to step 1" where `review-loop` briefs a fresh reviewer subagent. See "Why the review does not delegate".
 
-Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
+Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, and the "Coverage" section of the bugs reviewer, and the cap of eight findings in "Report".
 
 ## Left out on purpose
 

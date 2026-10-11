@@ -60,7 +60,7 @@ Then the findings in three groups, skip empty groups:
 - **Should fix:** risky code without a test, real slowness, duplication, a function that mixes jobs, code that should not exist.
 - **Nice to have:** small speed-ups, shorter forms.
 
-Number findings across all groups, so the user can say "fix 2 and 5".
+Number findings across all groups, so the user can say "fix 2 and 5". Report at most eight; when more are validated, keep the eight with the highest impact and say how many were left out.
 Every finding has all four parts, each one or two short sentences:
 
 2. **Orders land on the wrong day** (`billing/close_day.py:L40-52`)

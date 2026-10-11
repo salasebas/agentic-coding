@@ -33,6 +33,8 @@ NEVER misreport the priority / importance of issues. Be extremely thorough in tr
 
 Correctness, edge cases and error paths, security, performance, and the tests: do they exercise behavior, and would they fail if the change regressed?
 
+For every line the change deletes or replaces, name the behavior it enforced and find where the new code keeps it. For every function, method or scope the change modifies or removes, find its callers and check each one still works.
+
 ## Final Response
 IF the change is a PR/MR and you have Must fix or Should fix findings, check its discussion using gh/glab cli for comments from other reviewers.
 If they found issues you missed, evaluate them to determine if they are valid and include them in your report. Flag the findings in your report that came from the discussion.
