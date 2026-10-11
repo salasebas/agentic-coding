@@ -11,6 +11,7 @@ My setup for coding agents: the global rules, the skills I keep, and the skills 
 | [`typescript-development`](./skills/typescript-development/SKILL.md) | Conventions for TypeScript and JavaScript projects: strict mode, `pnpm`. |
 | [`rust-development`](./skills/rust-development/SKILL.md) | Conventions for Rust projects: workspaces, crate features, public APIs. |
 | [`golang-development`](./skills/golang-development/SKILL.md) | Conventions for Go projects, with a testing reference. |
+| [`no-comments`](./skills/no-comments/SKILL.md) | Removes comments from a diff with a fresh-context subagent and fixes the code the comments were excusing. Runs when you type `/no-comments`. |
 
 The language skills load only in a project that uses that language. They are copies of sammcj's skills; [`skills/THIRD_PARTY.md`](./skills/THIRD_PARTY.md) has the attribution.
 
@@ -25,7 +26,7 @@ npx skills add salasebas/skills -g -s review-changes
 ```
 
 ```bash
-npx skills add salasebas/skills -g -s review-changes -s python-development -s typescript-development -s rust-development -s golang-development
+npx skills add salasebas/skills -g -s review-changes -s python-development -s typescript-development -s rust-development -s golang-development -s no-comments
 ```
 
 As a plugin:
