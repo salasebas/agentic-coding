@@ -62,7 +62,8 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | [`sammcj/agentic-coding`](https://github.com/sammcj/agentic-coding) | `shell-scripting`, `writing-documentation-with-diataxis` |
 | [`cursor/plugins`](https://github.com/cursor/plugins), `pstack` | `technical-writing`, `unslop` |
 | `cursor/plugins`, `cursor-team-kit` | `deslop` |
-| [`Leonxlnx/taste-skill`](https://github.com/Leonxlnx/taste-skill) | `design-taste-frontend` |
+| [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills) | `vercel-composition-patterns`, `vercel-react-best-practices`, `web-design-guidelines` |
+| [`vojtaholik/good-css`](https://github.com/vojtaholik/good-css) | `good-css` |
 | [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser) | `agent-browser` |
 | [`vercel-labs/skills`](https://github.com/vercel-labs/skills) | `find-skills` |
 

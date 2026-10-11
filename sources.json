@@ -22,13 +22,6 @@
       "skillFolderHash": "db7a20dc1d8ad26a0307dcb45ebc79fc372f5c69",
       "updatedAt": "2026-10-04T06:24:27.215Z"
     },
-    "design-taste-frontend": {
-      "source": "Leonxlnx/taste-skill",
-      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
-      "skillPath": "skills/taste-skill/SKILL.md",
-      "skillFolderHash": "a6d128e53b4ec0238baee751dde33bf707adb5ec",
-      "updatedAt": "2026-06-01T02:23:09.594Z"
-    },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
@@ -252,6 +245,34 @@
       "skillPath": "skills/shell-scripting/SKILL.md",
       "skillFolderHash": "",
       "updatedAt": "2026-10-11T07:56:29.263Z"
+    },
+    "good-css": {
+      "source": "vojtaholik/good-css",
+      "sourceUrl": "https://github.com/vojtaholik/good-css.git",
+      "skillPath": "skills/good-css/SKILL.md",
+      "skillFolderHash": "716c242ae3ef01743ab8e1851222260a05050763",
+      "updatedAt": "2026-10-11T08:15:39.508Z"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
+      "updatedAt": "2026-10-11T08:15:44.793Z"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368",
+      "updatedAt": "2026-10-11T08:15:44.784Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "skillFolderHash": "343db72180d05814949fef7d46be96b5c6ee86b3",
+      "updatedAt": "2026-10-11T08:15:44.790Z"
     }
   }
 }
