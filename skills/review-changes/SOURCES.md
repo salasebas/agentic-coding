@@ -37,7 +37,7 @@ These are the only places where the text differs from upstream. Reapply them aft
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
 
-Written for this repo, with no upstream: the scope commands and the checkout rule, the two-reviewer default, the session-model rule, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
+Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the two-reviewer default, the session-model rule, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
 
 ## Left out on purpose
 

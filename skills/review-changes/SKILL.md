@@ -35,7 +35,7 @@ Review what the user names: uncommitted or staged changes, a branch, a PR link, 
 - **A branch, or a diff against a base:** `git diff <base>...HEAD` (three-dot, so the comparison is against the merge-base)
 - **A PR:** `gh pr diff <number>`, with `gh pr view <number>` for the description
 
-Reviewers read the files on disk. When the change under review is not the checked-out branch, ask before switching to it.
+Reviewers read the surrounding code at the revision under review. When that revision is checked out, they read the files on disk. Otherwise stay on the current branch and read from the revision: `git show <ref>:<path>` and `git grep <pattern> <ref>`, after `git fetch origin pull/<number>/head` for a PR.
 
 Confirm the diff is non-empty before launching reviewers.
 
