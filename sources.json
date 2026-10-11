@@ -106,13 +106,6 @@
       "skillFolderHash": "39bd9cc130f7dfcc4e3ea0b3613f6ebed0d0ad2b",
       "updatedAt": "2026-10-06T05:10:20.029Z"
     },
-    "prototype": {
-      "source": "mattpocock/skills",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/prototype/SKILL.md",
-      "skillFolderHash": "e41d92e171f074a2b6887d8f6faca4a15c83d1ca",
-      "updatedAt": "2026-10-06T05:10:22.098Z"
-    },
     "research": {
       "source": "mattpocock/skills",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
