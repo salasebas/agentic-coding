@@ -8,11 +8,11 @@ My setup for coding agents: the global rules, the skills I keep, and the skills 
 | --- | --- |
 | [`review-changes`](./skills/review-changes/SKILL.md) | Reviews a change for bugs and structure and validates every finding before reporting it. `loop` fixes and reviews again until nothing is left. |
 | [`python-development`](./skills/python-development/SKILL.md) | Conventions for Python projects: `uv`, type hints, PEP 723 scripts. |
-| [`typescript-development`](./skills/typescript-development/SKILL.md) | Conventions for TypeScript and JavaScript projects: strict mode, `pnpm`. |
+| [`typescript-development`](./skills/typescript-development/SKILL.md) | Conventions for TypeScript and JavaScript projects: strict mode, `pnpm`, and rules for modelling types. |
 | [`rust-development`](./skills/rust-development/SKILL.md) | Conventions for Rust projects: workspaces, crate features, public APIs. |
 | [`golang-development`](./skills/golang-development/SKILL.md) | Conventions for Go projects, with a testing reference. |
 
-The language skills load only in a project that uses that language. They are copies of sammcj's skills; [`skills/THIRD_PARTY.md`](./skills/THIRD_PARTY.md) has the attribution.
+The language skills load only in a project that uses that language. They are copies of sammcj's skills, and the TypeScript one adds pstack's type rules; [`skills/THIRD_PARTY.md`](./skills/THIRD_PARTY.md) has the attribution.
 
 `review-changes` is assembled from other review skills. [`SOURCES.md`](./skills/review-changes/SOURCES.md) records where each part came from, why the skill is shaped the way it is, and how to update it.
 
