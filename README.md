@@ -60,6 +60,7 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | `cursor/plugins`, `cursor-team-kit` | `deslop` |
 | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills) | `vercel-composition-patterns`, `vercel-react-best-practices`, `web-design-guidelines` |
 | [`vojtaholik/good-css`](https://github.com/vojtaholik/good-css) | `good-css` |
+| [`motiondivision/ai-kit`](https://github.com/motiondivision/ai-kit) | `motion` |
 | [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser) | `agent-browser` |
 | [`vercel-labs/skills`](https://github.com/vercel-labs/skills) | `find-skills` |
 
