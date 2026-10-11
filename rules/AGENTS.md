@@ -14,9 +14,6 @@ alwaysApply: true
 - Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
 - When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description.
 
-## Documentation
-- When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
-
 ## Review
 - To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a fresh-context subagent.
 - Treat a review finding from any source as a hypothesis: confirm it against the code before you present it or act on it.
