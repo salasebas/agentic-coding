@@ -1,7 +1,7 @@
 {
   "name": "salasebas-skills",
-  "version": "0.1.0",
-  "description": "Sebastian's own agent skills. review-changes: bugs and structure review, validated findings, optional fix-and-review loop.",
+  "version": "0.2.0",
+  "description": "Sebastian's agent skills: review-changes, no-comments, and conventions for Python, TypeScript, Rust and Go.",
   "author": {
     "name": "Sebastian Sala",
     "url": "https://github.com/salasebas"
@@ -10,9 +10,19 @@
   "license": "MIT",
   "keywords": [
     "skills",
-    "code-review"
+    "code-review",
+    "comments",
+    "python",
+    "typescript",
+    "rust",
+    "go"
   ],
   "skills": [
-    "./skills/review-changes"
+    "./skills/review-changes",
+    "./skills/no-comments",
+    "./skills/python-development",
+    "./skills/typescript-development",
+    "./skills/rust-development",
+    "./skills/golang-development"
   ]
 }
