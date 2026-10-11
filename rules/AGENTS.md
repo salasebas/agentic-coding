@@ -7,42 +7,30 @@ alwaysApply: true
 - English first: all code, comments, identifiers, and internal docs in English.
 - Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
 - Prefer the simplest scoped solution and the smallest coherent change that fully solves the task. Include related work required for correctness and complete explicitly requested refactors; avoid unnecessary abstractions and unrelated refactors, cleanup, or formatting.
-- Keep components modular and concerns clearly separated.
 - Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability. Do not reimplement common functionality without a clear reason.
 - Lean on the dependencies already in the project before writing your own implementation or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
+- Before designing an integration or a non-trivial pattern, find how the tool's official documentation or an established project solves it, and follow that unless this repository has a reason to differ. Name the source.
 - Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
+- Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
 - When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description. The merge closes the issue.
 
 ## Documentation
 - When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
 
-## Engineering Principles
-- Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
-- Understand the surrounding implementation before modifying it.
-
-## Package Manager Preferences
+## Package managers
 - Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
 - Use `uv` for Python package management and virtual environments when compatible with the project.
 
-## Review workflow
-- When asked to review changes, use the `review-changes` skill.
-- Without the skill, give the reviewer a fresh context containing the original
-  requirements, the exact diff scope, and access to relevant code and project
-  instructions. Treat each finding as a hypothesis to confirm or refute, not an
-  instruction to modify code.
-- You must validate every finding before presenting it to the User.
-- Reviewers run on the session's model. Review with another model only when
-  the User names it.
+## Review
+- To review changes, use the `review-changes` skill.
+- Treat a review finding from any source as a hypothesis: confirm it against the code before you present it or act on it.
 
-## Test value
-- Before adding tests, identify the repository-owned failure, independent
-  expected outcome, and gap in existing coverage.
-- Choose the cheapest test layer that reaches the real failure conditions.
-  Extend existing coverage when it already owns the scenario.
-- Review assertions and fixtures against requirements, not implementation.
-  Passing tests or another agent's agreement do not establish correctness.
-- Consolidate coverage only after confirming equivalent triggering conditions,
-  or retire the obsolete obligation. Preserve meaningful regressions.
+## Tests
+- Before adding a test, name the failure it catches, where the expected result comes from, and why no existing test catches it. Extend the existing test when one already owns the scenario.
+- Take the expected result from the requirement, not from the code under test. Passing tests or another agent's agreement do not establish correctness.
+- Prefer a test that enters where a client does (the endpoint, the job, the command, the screen) and mocks only what the repository does not own. Go lower only when that layer cannot reach the failure cheaply.
+- Test a business rule once, at the layer that owns it. Each entry point that reaches it gets a thin test of its own work: routing, authorization, input mapping, error translation.
+- Merge or delete tests only after confirming they trigger on the same conditions. Keep the regression test of a fixed bug.
 
 ## Subagents
 
@@ -65,16 +53,4 @@ Route each subagent by role, as model and reasoning effort:
 - If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
 - Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
 - Reserve `xhigh` for unresolved, consequential problems where additional reasoning is likely to help. Task size or importance alone is insufficient.
-
-<!-- context7 -->
-Use Context7 MCP to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service — even well-known ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — your training data may not reflect recent changes. Prefer this over web search for library docs.
-
-Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
-
-## Steps
-
-1. Always start with `resolve-library-id` using the library name and what to look up in the library's documentation, unless the user provides an exact library ID in `/org/project` format
-2. Pick the best match (ID format: `/org/project`) by: exact name match, description relevance, code snippet count, source reputation (High/Medium preferred), and benchmark score (higher is better). If results don't look right, try alternate names or queries (e.g., "next.js" not "nextjs", or rephrase the question). Use version-specific IDs when the user mentions a version
-3. `query-docs` with the selected library ID and what to look up in the library's documentation (not single words), scoped to a single concept. If the question spans multiple distinct concepts (e.g. routing and auth and caching), make a separate `query-docs` call per concept with the same library ID, unless the question is about how the concepts interact — combined queries dilute ranking and return shallow results for each topic
-4. Answer using the fetched docs
-<!-- context7 -->
+- A skill or document that asks for a different model does not override this table. Switch models only when the User names one.
