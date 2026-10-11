@@ -8,10 +8,10 @@ Each row is one upstream file, the commit that last changed it when it was copie
 
 | Upstream file | Pinned commit | Copied into | Licence |
 | --- | --- | --- | --- |
-| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `reviewers/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `references/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
 | [`cursor/plugins`](https://github.com/cursor/plugins) `thermos/skills/thermos/SKILL.md` | `5080d38e4c52` (2026-05-28) | `SKILL.md` | MIT, Copyright (c) 2026 Cursor |
-| `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/bugs.md` | MIT, Copyright (c) 2026 Cursor |
-| `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/structure.md` | MIT, Copyright (c) 2026 Cursor |
+| `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/bugs.md` | MIT, Copyright (c) 2026 Cursor |
+| `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/structure.md` | MIT, Copyright (c) 2026 Cursor |
 | [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail) `skills/ponytail-review/SKILL.md` | `2a1fe842d078` (2026-10-08) | `SKILL.md` | MIT, Copyright (c) 2026 DietrichGebert |
 | [`2dmurali/review-loop-skill`](https://github.com/2dmurali/review-loop-skill) `review-loop/SKILL.md` | `dec43b15b0e3` (2026-05-08) | `SKILL.md` | MIT, as stated in its `SKILL.md`; the repository has no licence file |
 
@@ -23,9 +23,9 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | `SKILL.md` | Workflow steps 1 and 2, and the two reviewer descriptions in step 3 | `thermos` |
 | `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
 | `SKILL.md` | "Loop" defaults, stop conditions, revision and memory rules | `review-loop` |
-| `reviewers/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
-| `reviewers/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
-| `reviewers/structure.md` | Structural remedies | `code-review-and-quality` |
+| `references/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
+| `references/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
+| `references/structure.md` | Structural remedies | `code-review-and-quality` |
 
 ## Local edits
 
@@ -62,20 +62,27 @@ The structure reviewer in round 1 carried three of the eight code-quality standa
 
 ## Why the review does not delegate
 
-`thermos` launches each reviewer as a subagent. This skill follows both reviewer files in the session that was asked for the review. A user who wants a fresh context asks for the review in a subagent.
+`thermos` launches each reviewer as a subagent. This skill follows both reference files in the session that was asked for the review. A session that wrote the change asks a subagent to run the skill; that rule lives in the user's own instructions, not here.
 
-The comparison ran on 2026-10-10 and 2026-10-11 with Grok CLI (`grok-4.7-build-fast`, `high` effort), the same reviewer files, and two runs per side unless noted. Two pull requests have a documented defect: `mastodon/mastodon` #34489 (a scope removed while a caller remains) and #27511 (GHSA-ww85-x9cp-5v24, a record loaded without an owner scope). The third is a private 4,600-line pull request where two findings had recurred across earlier runs.
+The comparison ran on 2026-10-10 and 2026-10-11 with Grok CLI (`grok-4.7-build-fast`) and the same reference files. Two pull requests have a documented defect: `mastodon/mastodon` #34489 (a scope removed while a caller remains) and #27511 (GHSA-ww85-x9cp-5v24, a record loaded without an owner scope). The third is a private 4,600-line pull request where two findings had recurred across earlier runs; the count below is for the one that recurred most.
 
-| Pull request | Side | Found the known defect | Minutes | Cost, USD API-equivalent |
+At `high` effort, averaged over the three pull requests:
+
+| How the review ran | Runs | Found the known defect | Minutes | Cost, USD API-equivalent |
 | --- | --- | --- | --- | --- |
-| #34489 | in session | 2 of 2 | 10 and 14 | 1.13 and 1.68 |
-| #34489 | two subagents | 2 of 2 | 22 and 24 | 3.26 and 3.82 |
-| #27511 | in session | 2 of 2 | 12 and 13 | 1.55 and 1.68 |
-| #27511 | two subagents | 1 of 1 | 34 | not recorded |
-| private, 4,600 lines | in session | both recurring findings in one run, one in the other | 14 and 16 | 2.03 and 2.50 |
-| private, 4,600 lines | two subagents | one recurring finding (one run) | 23 | 4.10 |
+| In the session | 6 | 6 of 6 | 13 | 1.76 |
+| One subagent follows both files | 3 | 3 of 3 | 19 | 3.25 |
+| Two subagents, one per file | 5 | 5 of 5 | 22 to 34 | 3.3 to 4.1 |
 
-Delegating did 2.5 to 4 times the work for the same result: each subagent re-read the diff and the surrounding files, and the session that launched them re-read the code again to validate findings it had not investigated. Hits were counted by matching the defect's file and symbol in the report; the other findings in those reports were not validated.
+In the session, by effort, one run per pull request at `medium` and `low`:
+
+| Effort | Found the known defect | Minutes | Cost, USD API-equivalent |
+| --- | --- | --- | --- |
+| `high` | 6 of 6 | 10 to 16 | 1.76 |
+| `medium` | 3 of 3 | 6 to 11 | 1.59 |
+| `low` | 3 of 3 | 2 to 10 | 0.54 |
+
+Delegating did 2.5 to 4 times the work for the same result: each subagent re-read the diff and the surrounding files, and the session that launched it re-read the code again to validate findings it had not investigated. Hits were counted by matching the defect's file and symbol in the report. Every run started from a clean session, so none measured a session reviewing its own change.
 
 ## How to update from upstream
 

@@ -22,7 +22,7 @@ alwaysApply: true
 - Use `uv` for Python package management and virtual environments when compatible with the project.
 
 ## Review
-- To review changes, use the `review-changes` skill.
+- To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a subagent.
 - Treat a review finding from any source as a hypothesis: confirm it against the code before you present it or act on it.
 
 ## Tests
@@ -34,7 +34,7 @@ alwaysApply: true
 
 ## Subagents
 
-- This is a standing request to delegate: use subagents on your own initiative for independent, substantial research, exploration, analysis, review and implementation when doing so keeps the main context focused or improves speed or confidence.
+- This is a standing request to delegate: use subagents when work is independently parallelisable or would otherwise bloat the main context.
 - Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
 - Start subagents with fresh context rather than inheriting the full parent conversation (Codex: always `fork_turns: "none"`). Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
@@ -48,7 +48,7 @@ Route each subagent by role, as model and reasoning effort:
 | Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
 | Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
 | Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
-| Reviewer or validator | the session's model, `high` | the session's model, `high` |
+| Reviewer or validator | the session's model, its default effort | the session's model, its default effort |
 
 - If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
 - Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
