@@ -72,7 +72,7 @@ At `high` effort, averaged over the three pull requests:
 | --- | --- | --- | --- | --- |
 | In the session | 6 | 6 of 6 | 13 | 1.76 |
 | One subagent follows both files | 3 | 3 of 3 | 19 | 3.25 |
-| Two subagents, one per file | 5 | 5 of 5 | 22 to 34 | 3.3 to 4.1 |
+| Two subagents, one per file | 4 | 4 of 4 | 22 to 34 | 3.3 to 4.1 |
 
 In the session, by effort, one run per pull request at `medium` and `low`:
 
