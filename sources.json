@@ -252,6 +252,27 @@
       "skillPath": "skills/git-commit/SKILL.md",
       "skillFolderHash": "883a6a7466f55a9cd9f22cf1cce2d9333fc9b998",
       "updatedAt": "2026-04-25T17:55:14.241Z"
+    },
+    "unslop": {
+      "source": "cursor/plugins",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "pstack/skills/unslop/SKILL.md",
+      "skillFolderHash": "d5baa969e71c4ddb563412b0ec170fa3b05b6d6e",
+      "updatedAt": "2026-10-10T08:34:57.816Z"
+    },
+    "deslop": {
+      "source": "cursor/plugins",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "cursor-team-kit/skills/deslop/SKILL.md",
+      "skillFolderHash": "ac9ba043f9dd3b3a8850de6624ec5bc12e375599",
+      "updatedAt": "2026-10-10T08:35:01.480Z"
+    },
+    "technical-writing": {
+      "source": "cursor/plugins",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "pstack/skills/technical-writing/SKILL.md",
+      "skillFolderHash": "51c1a0ec9526c3976455f6e6ab00e0e0c5f3de5e",
+      "updatedAt": "2026-10-10T20:58:48.015Z"
     }
   }
 }
