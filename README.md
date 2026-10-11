@@ -4,6 +4,12 @@ This is how I work with coding agents: my global instructions in [`rules/`](./ru
 
 [`rules/AGENTS.md`](./rules/AGENTS.md) is my file. The installed copy lives at `~/.agents/AGENTS.md`. [`rules/CLAUDE.md`](./rules/CLAUDE.md) is a symlink to it, for the tools that read `CLAUDE.md`. The frontmatter at the top of `AGENTS.md` is for Cursor, which reads the file as an always-applied rule through `~/.cursor/rules/agents.mdc`.
 
+Rules for external tools live in [`rules/integrations/`](./rules/integrations/), one file per tool, so they can be installed or left out without touching `AGENTS.md`.
+
+| Rule | For | Install as |
+| --- | --- | --- |
+| [`context7.md`](./rules/integrations/context7.md) | The Context7 MCP server | `~/.claude/rules/context7.md` for Claude Code, `~/.cursor/rules/context7.mdc` for Cursor. Codex and Grok read only `AGENTS.md`: append the file there if you use Context7 with them. |
+
 ## Mine
 
 | Skill | Source | Install |
@@ -71,6 +77,9 @@ I do not author the skills below, and I do not copy them into this repo. Upstrea
 | --- | --- | --- |
 | `agent-browser` | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | `npx skills add vercel-labs/agent-browser -g -s agent-browser` |
 | `find-skills` | [vercel-labs/skills](https://github.com/vercel-labs/skills) | `npx skills add vercel-labs/skills -g -s find-skills` |
+| `unslop` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/pstack) | `npx skills add https://github.com/cursor/plugins/tree/main/pstack -g -s unslop` |
+| `technical-writing` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/pstack) | `npx skills add https://github.com/cursor/plugins/tree/main/pstack -g -s technical-writing` |
+| `deslop` | [cursor/plugins](https://github.com/cursor/plugins/tree/main/cursor-team-kit) | `npx skills add https://github.com/cursor/plugins/tree/main/cursor-team-kit -g -s deslop` |
 | `git-commit` | [github/awesome-copilot](https://github.com/github/awesome-copilot) | `npx skills add github/awesome-copilot -g -s git-commit` |
 | `writing-documentation-with-diataxis` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | `npx skills add sammcj/agentic-coding -g -s writing-documentation-with-diataxis` |
 
