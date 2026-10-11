@@ -22,7 +22,7 @@ alwaysApply: true
 - Use `uv` for Python package management and virtual environments when compatible with the project.
 
 ## Review
-- To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a subagent.
+- To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a fresh-context subagent.
 - Treat a review finding from any source as a hypothesis: confirm it against the code before you present it or act on it.
 
 ## Tests
@@ -48,7 +48,7 @@ Route each subagent by role, as model and reasoning effort:
 | Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
 | Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
 | Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
-| Reviewer or validator | the session's model, its default effort | the session's model, its default effort |
+| Reviewer or validator | the session's model, at that model's default effort | the session's model, at that model's default effort |
 
 - If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
 - Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
