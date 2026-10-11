@@ -16,7 +16,7 @@ Review a change like the senior developer who will be paged when it breaks.
 3. Launch both reviewers as subagents in the same message, each with a fresh context:
    - **Bugs reviewer** follows [`reviewers/bugs.md`](reviewers/bugs.md): bugs, breakages, security, devex regressions, feature-flag leaks, and other branch-audit risks.
    - **Structure reviewer** follows [`reviewers/structure.md`](reviewers/structure.md): maintainability, structure, file-size growth, spaghetti, abstractions, and codebase-health risks.
-4. Pass each subagent the same scoped diff/file context and the absolute path of its reviewer file, and ask it to return prioritized findings with file references and evidence. Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
+4. Pass each subagent the same scoped diff/file context and the absolute path of its reviewer file, and ask it to return findings with file references and evidence, grouped as Must fix, Should fix or Nice to have as defined under [Report](#report). Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
 5. After both finish, deduplicate findings across reviewers. Weight overlapping findings more heavily, and resolve disagreements with your own judgment.
 6. Validate every finding. See [Validate](#validate).
 7. Report. See [Report](#report).
@@ -35,7 +35,7 @@ Review what the user names: uncommitted or staged changes, a branch, a PR link, 
 - **A branch, or a diff against a base:** `git diff <base>...HEAD` (three-dot, so the comparison is against the merge-base)
 - **A PR:** `gh pr diff <number>`, with `gh pr view <number>` for the description
 
-Reviewers read the files on disk. When the change under review is not the checked-out branch, ask before switching to it.
+Reviewers read the surrounding code at the revision under review. When that revision is checked out, they read the files on disk. Otherwise stay on the current branch and read from the revision: `git show <ref>:<path>` and `git grep <pattern> <ref>`, after `git fetch origin pull/<number>/head` for a PR.
 
 Confirm the diff is non-empty before launching reviewers.
 

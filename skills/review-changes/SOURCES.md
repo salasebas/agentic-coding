@@ -8,9 +8,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 
 | Upstream file | Pinned commit | Copied into | Licence |
 | --- | --- | --- | --- |
-| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `reviewers/bugs.md`, `reviewers/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
-| `addyosmani/agent-skills` `references/security-checklist.md` | `623af9870488` (2026-09-18) | `references/security-checklist.md`, forked | MIT, Copyright (c) 2025 Addy Osmani |
-| `addyosmani/agent-skills` `references/performance-checklist.md` | `bfc9e32ddfd6` (2026-08-27) | `references/performance-checklist.md`, forked | MIT, Copyright (c) 2025 Addy Osmani |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `reviewers/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
 | [`cursor/plugins`](https://github.com/cursor/plugins) `thermos/skills/thermos/SKILL.md` | `5080d38e4c52` (2026-05-28) | `SKILL.md` | MIT, Copyright (c) 2026 Cursor |
 | `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/bugs.md` | MIT, Copyright (c) 2026 Cursor |
 | `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/structure.md` | MIT, Copyright (c) 2026 Cursor |
@@ -26,47 +24,40 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
 | `SKILL.md` | "Loop" defaults, stop conditions, revision and memory rules | `review-loop` |
 | `reviewers/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
-| `reviewers/bugs.md` | Tests first, correctness, security, performance, verification | `code-review-and-quality` |
 | `reviewers/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
-| `reviewers/structure.md` | Readability, architecture, structural remedies, change sizing, dead code, dependencies | `code-review-and-quality` |
-| `references/*.md` | Forked from the pin, then trimmed and corrected here | `agent-skills` `references/` |
+| `reviewers/structure.md` | Structural remedies | `code-review-and-quality` |
 
 ## Local edits
 
 These are the only places where the text differs from upstream. Reapply them after every update and add no others.
 
-- Heading levels are shifted so each file has one title, and the numbers are dropped from the axis headings ("### 1. Correctness" is "### Correctness") and from the three code-quality standards.
-- Pointers to skills that are not installed here are removed: `security-and-hardening`, `performance-optimization`, `constraint-driven-development`.
-- The mutation experiment under "Review the Tests First" is removed, because reviewers are read-only and two of them share one working tree.
-- The security and performance axes point at `references/` with the condition for reading each checklist.
+- Heading levels are shifted so each file has one title.
 - In "Report", "Very simple English" reads "Very simple language".
+- The reviewers say "the change" where upstream says "this PR" or "the branch", and Must fix where it says High priority, so one skill serves any scope and one scale.
+- The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
 
-Written for this repo, with no upstream: the scope commands and the checkout rule, the two-reviewer default, the session-model rule, the concrete case for a structure finding, and the validation completion rule.
-
-## Forked references
-
-The two checklists are maintained here, not synced word for word. Upstream is a source of ideas: read its changes and take what is correct and useful for reviewing a diff.
-
-Removed from both: the table of contents, and the pointers to `security-and-hardening` and `performance-optimization`.
-
-`references/security-checklist.md`:
-
-- Removed: threat modelling, the `grep` for secrets, account lockout, the destructive-path code sample (its one-line check stays), `X-Frame-Options` and `X-XSS-Protection`, and the per-version install-script matrix.
-- Corrected: password hashing lists argon2id first; JWT validation adds algorithm and audience; CSP carries `frame-ancestors 'none'`; the CORS wildcard is allowed for public resources without credentials, and reflecting the origin with credentials is the case to refuse.
-- Updated: the OWASP Top 10 table is the 2025 edition.
-
-`references/performance-checklist.md`:
-
-- Removed: the DNS hint under TTFB, the 200KB bundle and 200ms p95 targets, `isInputPending()`, the infrastructure list, the measurement commands, and the anti-patterns table, which repeated the checklist.
-- Corrected: the bfcache item no longer asks to drop `Cache-Control: no-store`, which protects sensitive pages; `unicode-range` selects a subset file rather than making one; pagination forbids an unbounded `SELECT`.
+Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the two-reviewer default, the session-model rule, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
 
 ## Left out on purpose
 
-- From `code-review-and-quality`: the multi-model review pattern, review speed, handling disagreements, change descriptions, the splitting strategies table, the severity prefix table, the review checklist, common rationalisations, and red flags.
-- From `thermo-nuclear-code-quality-review`: the rules that `code-review-and-quality` already carries (the 1000-line rule, spaghetti growth, type boundaries, canonical layer), the primary questions, the list of what to flag, the list of preferred remedies, and the review tone phrases.
+- From `code-review-and-quality`: the five review axes and their question lists, tests first, verify the verification, change sizing, dead code hygiene, dependency discipline, the multi-model review pattern, review speed, handling disagreements, change descriptions, the severity prefix table, the review checklist, common rationalisations, red flags, and the `references/` checklists. See "Why the reviewers are short".
+- From `thermo-nuclear-code-quality-review`: the primary questions, the list of what to flag, the list of preferred remedies, and the review tone phrases. All eight of its standards are kept.
 - From `ponytail-review`: the `shortcut:` comment convention and the `Lean:` line.
 - From `review-loop`: the 1 to 10 score, the quality gate, and model selection.
+
+## Why the reviewers are short
+
+The question lists and checklists were removed after two comparisons on merged pull requests, run on 2026-10-10 with one reviewer per variant and no repeats. Each finding was checked against the code afterwards.
+
+| Round | Pull requests | Bugs, confirmed: with lists | Bugs, confirmed: short | Tokens per bugs review |
+| --- | --- | --- | --- | --- |
+| 1, default effort | `saml-rs` #166 and #178, `better-auth-rb` #98 | 3 of 5 | 7 of 7 | 95k against 91k |
+| 2, `high` effort | `compitienda` #1569 | 5 of 5 | 5 of 5 | 146k against 150k |
+
+Each variant found one real defect the other missed, which is within the noise between runs. The structure reviewers agreed on four of five findings in round 2. The lists added no finding and no saving, so the short files win on upkeep. Before adding a list back, run the same comparison.
+
+The structure reviewer in round 1 carried three of the eight code-quality standards; round 2 used all eight.
 
 ## How to update from upstream
 
@@ -83,7 +74,7 @@ Removed from both: the table of contents, and the pointers to `security-and-hard
    gh api "repos/<owner>/<repo>/compare/<pinned>...<new>" --jq '.files[] | select(.filename == "<path>") | .patch'
    ```
 
-3. Paste the new upstream wording over the matching section here. Copy and paste; do not reword. For `references/*.md`, follow "Forked references" instead: apply by hand only the upstream changes worth having.
+3. Paste the new upstream wording over the matching section here. Copy and paste; do not reword.
 4. Reapply only the edits listed under "Local edits". If upstream added a section, decide whether it belongs here or under "Left out on purpose", and record the decision in this file.
 5. Update the pinned commit and date in the table.
 6. Bump `version` in `.claude-plugin/plugin.json`.
