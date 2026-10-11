@@ -8,24 +8,24 @@ Each row is one upstream file, the commit that last changed it when it was copie
 
 | Upstream file | Pinned commit | Copied into | Licence |
 | --- | --- | --- | --- |
-| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `reviewers/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `references/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
 | [`cursor/plugins`](https://github.com/cursor/plugins) `thermos/skills/thermos/SKILL.md` | `5080d38e4c52` (2026-05-28) | `SKILL.md` | MIT, Copyright (c) 2026 Cursor |
-| `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/bugs.md` | MIT, Copyright (c) 2026 Cursor |
-| `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `reviewers/structure.md` | MIT, Copyright (c) 2026 Cursor |
+| `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/bugs.md` | MIT, Copyright (c) 2026 Cursor |
+| `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/structure.md` | MIT, Copyright (c) 2026 Cursor |
 | [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail) `skills/ponytail-review/SKILL.md` | `2a1fe842d078` (2026-10-08) | `SKILL.md` | MIT, Copyright (c) 2026 DietrichGebert |
-| [`2dmurali/review-loop-skill`](https://github.com/2dmurali/review-loop-skill) `review-loop/SKILL.md` | `dec43b15b0e3` (2026-05-08) | `SKILL.md` | MIT, as stated in its `SKILL.md`; the repository has no licence file |
+| [`2dmurali/review-loop-skill`](https://github.com/2dmurali/review-loop-skill) `review-loop/SKILL.md` | `dec43b15b0e3` (2026-05-08) | `references/loop.md` | MIT, as stated in its `SKILL.md`; the repository has no licence file |
 
 ## What each file takes
 
 | File here | Section | Upstream |
 | --- | --- | --- |
 | `SKILL.md` | Approval standard, "Lead with what matters", "Honesty in Review" | `code-review-and-quality` |
-| `SKILL.md` | Workflow steps 1 to 5 | `thermos` |
+| `SKILL.md` | Workflow steps 1 and 2, and the two reviewer descriptions in step 3 | `thermos` |
 | `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
-| `SKILL.md` | "Loop" defaults, stop conditions, revision and memory rules | `review-loop` |
-| `reviewers/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
-| `reviewers/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
-| `reviewers/structure.md` | Structural remedies | `code-review-and-quality` |
+| `references/loop.md` | Defaults, stop conditions, revision and memory rules | `review-loop` |
+| `references/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
+| `references/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
+| `references/structure.md` | Structural remedies | `code-review-and-quality` |
 
 ## Local edits
 
@@ -36,8 +36,9 @@ These are the only places where the text differs from upstream. Reapply them aft
 - The reviewers say "the change" where upstream says "this PR" or "the branch", and Must fix where it says High priority, so one skill serves any scope and one scale.
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
+- In "Loop", step 5 reads "Go back to step 1" where `review-loop` briefs a fresh reviewer subagent. See "Why the review does not delegate".
 
-Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the session-model rule, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
+Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
 
 ## Left out on purpose
 
@@ -58,6 +59,30 @@ The question lists and checklists were removed after two comparisons on merged p
 Each variant found one real defect the other missed, which is within the noise between runs. The structure reviewers agreed on four of five findings in round 2. The lists added no finding and no saving, so the short files win on upkeep. Before adding a list back, run the same comparison.
 
 The structure reviewer in round 1 carried three of the eight code-quality standards; round 2 used all eight.
+
+## Why the review does not delegate
+
+`thermos` launches each reviewer as a subagent. This skill follows both reference files in the session that was asked for the review. A session that wrote the change asks a subagent to run the skill; that rule lives in the user's own instructions, not here.
+
+The comparison ran on 2026-10-10 and 2026-10-11 with Grok CLI (`grok-4.7-build-fast`) and the same reference files. Two pull requests have a documented defect: `mastodon/mastodon` #34489 (a scope removed while a caller remains) and #27511 (GHSA-ww85-x9cp-5v24, a record loaded without an owner scope). The third is a private 4,600-line pull request where two findings had recurred across earlier runs; the count below is for the one that recurred most.
+
+At `high` effort, averaged over the three pull requests:
+
+| How the review ran | Runs | Found the known defect | Minutes | Cost, USD API-equivalent |
+| --- | --- | --- | --- | --- |
+| In the session | 6 | 6 of 6 | 13 | 1.76 |
+| One subagent follows both files | 3 | 3 of 3 | 19 | 3.25 |
+| Two subagents, one per file | 4 | 4 of 4 | 22 to 34 | 3.3 to 4.1 |
+
+In the session, by effort, one run per pull request at `medium` and `low`:
+
+| Effort | Found the known defect | Minutes | Cost, USD API-equivalent |
+| --- | --- | --- | --- |
+| `high` | 6 of 6 | 10 to 16 | 1.76 |
+| `medium` | 3 of 3 | 6 to 11 | 1.59 |
+| `low` | 3 of 3 | 2 to 10 | 0.54 |
+
+Delegating did 2.5 to 4 times the work for the same result: each subagent re-read the diff and the surrounding files, and the session that launched it re-read the code again to validate findings it had not investigated. Hits were counted by matching the defect's file and symbol in the report. Every run started from a clean session, so none measured a session reviewing its own change.
 
 ## How to update from upstream
 
