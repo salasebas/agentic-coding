@@ -1,6 +1,6 @@
 ---
 name: review-changes
-description: Review a change — staged or uncommitted work, a commit, a branch diff, or a PR — with two parallel reviewers (bugs, structure) whose findings are validated before they are reported. Use for "review this", "code review", "review my PR". `loop` fixes and re-reviews until no findings remain.
+description: Review a change — staged or uncommitted work, a commit, a branch diff, or a PR — with fresh-context reviewers (bugs, structure) whose findings are validated before they are reported. Use for "review this", "code review", "review my PR". `loop` fixes and re-reviews until no findings remain.
 ---
 
 # Review Changes
@@ -13,15 +13,17 @@ Review a change like the senior developer who will be paged when it breaks.
 
 1. Determine the review scope from the user request, PR, current branch, or relevant changed files. See [Scope](#scope).
 2. Gather the diff and any file/context excerpts needed for reviewers to evaluate the change without guessing, plus the original requirements and the project instructions.
-3. Launch both reviewers as subagents in the same message, each with a fresh context:
+3. Launch the reviewers as subagents in the same message, each with a fresh context. See [Reviewers](#reviewers) for which ones:
    - **Bugs reviewer** follows [`reviewers/bugs.md`](reviewers/bugs.md): bugs, breakages, security, devex regressions, feature-flag leaks, and other branch-audit risks.
    - **Structure reviewer** follows [`reviewers/structure.md`](reviewers/structure.md): maintainability, structure, file-size growth, spaghetti, abstractions, and codebase-health risks.
 4. Pass each subagent the same scoped diff/file context and the absolute path of its reviewer file, and ask it to return findings with file references and evidence, grouped as Must fix, Should fix or Nice to have as defined under [Report](#report). Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
-5. After both finish, deduplicate findings across reviewers. Weight overlapping findings more heavily, and resolve disagreements with your own judgment.
+5. After they finish, deduplicate findings across reviewers. Weight overlapping findings more heavily, and resolve disagreements with your own judgment.
 6. Validate every finding. See [Validate](#validate).
 7. Report. See [Report](#report).
 
-Two reviewers is the default. Run a single reviewer only when the user asks for one; when the harness has no subagents, run both reviewer files yourself, one after the other.
+## Reviewers
+
+The user decides how the review is staffed: which reviewer files run, how many copies of each, and whether a large diff is split between them. When they say nothing, run each file in [`reviewers/`](reviewers/) once, on the whole diff. When the harness has no subagents, run the reviewer files yourself, one after the other.
 
 Reviewers and validators run on the session's model, and they are read-only: the review lists findings, changes no code. [Loop](#loop) is the one mode that edits.
 
