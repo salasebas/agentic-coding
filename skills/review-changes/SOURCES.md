@@ -20,7 +20,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | File here | Section | Upstream |
 | --- | --- | --- |
 | `SKILL.md` | Approval standard, "Lead with what matters", "Honesty in Review" | `code-review-and-quality` |
-| `SKILL.md` | Workflow steps 1 to 5 | `thermos` |
+| `SKILL.md` | Workflow steps 1 and 2, and the two reviewer descriptions in step 3 | `thermos` |
 | `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
 | `SKILL.md` | "Loop" defaults, stop conditions, revision and memory rules | `review-loop` |
 | `reviewers/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
@@ -36,8 +36,9 @@ These are the only places where the text differs from upstream. Reapply them aft
 - The reviewers say "the change" where upstream says "this PR" or "the branch", and Must fix where it says High priority, so one skill serves any scope and one scale.
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
+- In "Loop", step 5 reads "Go back to step 1" where `review-loop` briefs a fresh reviewer subagent. See "Why the review does not delegate".
 
-Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the session-model rule, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
+Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
 
 ## Left out on purpose
 
@@ -58,6 +59,23 @@ The question lists and checklists were removed after two comparisons on merged p
 Each variant found one real defect the other missed, which is within the noise between runs. The structure reviewers agreed on four of five findings in round 2. The lists added no finding and no saving, so the short files win on upkeep. Before adding a list back, run the same comparison.
 
 The structure reviewer in round 1 carried three of the eight code-quality standards; round 2 used all eight.
+
+## Why the review does not delegate
+
+`thermos` launches each reviewer as a subagent. This skill follows both reviewer files in the session that was asked for the review. A user who wants a fresh context asks for the review in a subagent.
+
+The comparison ran on 2026-10-10 and 2026-10-11 with Grok CLI (`grok-4.7-build-fast`, `high` effort), the same reviewer files, and two runs per side unless noted. Two pull requests have a documented defect: `mastodon/mastodon` #34489 (a scope removed while a caller remains) and #27511 (GHSA-ww85-x9cp-5v24, a record loaded without an owner scope). The third is a private 4,600-line pull request where two findings had recurred across earlier runs.
+
+| Pull request | Side | Found the known defect | Minutes | Cost, USD API-equivalent |
+| --- | --- | --- | --- | --- |
+| #34489 | in session | 2 of 2 | 10 and 14 | 1.13 and 1.68 |
+| #34489 | two subagents | 2 of 2 | 22 and 24 | 3.26 and 3.82 |
+| #27511 | in session | 2 of 2 | 12 and 13 | 1.55 and 1.68 |
+| #27511 | two subagents | 1 of 1 | 34 | not recorded |
+| private, 4,600 lines | in session | both recurring findings in one run, one in the other | 14 and 16 | 2.03 and 2.50 |
+| private, 4,600 lines | two subagents | one recurring finding (one run) | 23 | 4.10 |
+
+Delegating did 2.5 to 4 times the work for the same result: each subagent re-read the diff and the surrounding files, and the session that launched them re-read the code again to validate findings it had not investigated. Hits were counted by matching the defect's file and symbol in the report; the other findings in those reports were not validated.
 
 ## How to update from upstream
 

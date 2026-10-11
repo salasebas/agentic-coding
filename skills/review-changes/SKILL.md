@@ -1,6 +1,6 @@
 ---
 name: review-changes
-description: Review a change — staged or uncommitted work, a commit, a branch diff, or a PR — with two parallel reviewers (bugs, structure) whose findings are validated before they are reported. Use for "review this", "code review", "review my PR". `loop` fixes and re-reviews until no findings remain.
+description: Review a change — staged or uncommitted work, a commit, a branch diff, or a PR — along two lenses (bugs, structure), with findings validated before they are reported. Use for "review this", "code review", "review my PR". `loop` fixes and re-reviews until no findings remain.
 ---
 
 # Review Changes
@@ -12,16 +12,16 @@ Review a change like the senior developer who will be paged when it breaks.
 ## Workflow
 
 1. Determine the review scope from the user request, PR, current branch, or relevant changed files. See [Scope](#scope).
-2. Gather the diff and any file/context excerpts needed for reviewers to evaluate the change without guessing, plus the original requirements and the project instructions.
-3. Launch both reviewers as subagents in the same message, each with a fresh context:
-   - **Bugs reviewer** follows [`reviewers/bugs.md`](reviewers/bugs.md): bugs, breakages, security, devex regressions, feature-flag leaks, and other branch-audit risks.
-   - **Structure reviewer** follows [`reviewers/structure.md`](reviewers/structure.md): maintainability, structure, file-size growth, spaghetti, abstractions, and codebase-health risks.
-4. Pass each subagent the same scoped diff/file context and the absolute path of its reviewer file, and ask it to return findings with file references and evidence, grouped as Must fix, Should fix or Nice to have as defined under [Report](#report). Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
-5. After both finish, deduplicate findings across reviewers. Weight overlapping findings more heavily, and resolve disagreements with your own judgment.
+2. Gather the diff and any file/context excerpts needed to evaluate the change without guessing, plus the original requirements and the project instructions.
+3. Review the change yourself, following each reviewer file in turn:
+   - [`reviewers/bugs.md`](reviewers/bugs.md): bugs, breakages, security, devex regressions, feature-flag leaks, and other branch-audit risks.
+   - [`reviewers/structure.md`](reviewers/structure.md): maintainability, structure, file-size growth, spaghetti, abstractions, and codebase-health risks.
+4. Record findings with file references and evidence, grouped as Must fix, Should fix or Nice to have as defined under [Report](#report). Require a concrete failure scenario, location, impact, and evidence. Zero findings is an acceptable outcome.
+5. Deduplicate the findings.
 6. Validate every finding. See [Validate](#validate).
 7. Report. See [Report](#report).
 
-Reviewers and validators run on the session's model, and they are read-only: the review lists findings, changes no code. [Loop](#loop) is the one mode that edits.
+The review is read-only: it lists findings, changes no code. [Loop](#loop) is the one mode that edits.
 
 ## Scope
 
@@ -33,9 +33,9 @@ Review what the user names: uncommitted or staged changes, a branch, a PR link, 
 - **A branch, or a diff against a base:** `git diff <base>...HEAD` (three-dot, so the comparison is against the merge-base)
 - **A PR:** `gh pr diff <number>`, with `gh pr view <number>` for the description
 
-Reviewers read the surrounding code at the revision under review. When that revision is checked out, they read the files on disk. Otherwise stay on the current branch and read from the revision: `git show <ref>:<path>` and `git grep <pattern> <ref>`, after `git fetch origin pull/<number>/head` for a PR.
+Read the surrounding code at the revision under review. When that revision is checked out, read the files on disk. Otherwise stay on the current branch and read from the revision: `git show <ref>:<path>` and `git grep <pattern> <ref>`, after `git fetch origin pull/<number>/head` for a PR.
 
-Confirm the diff is non-empty before launching reviewers.
+Confirm the diff is non-empty before reviewing.
 
 ## Validate
 
@@ -111,7 +111,7 @@ Runs when the user passes `loop` with the request. Without it, the review is a s
    2. If loops completed >= max_loops → **stop, go to the report**
    3. Otherwise → **revise and loop**
 4. Revise: fix the validated **Must fix** and **Should fix** findings. **Nice to have** findings are optional. Each revision should be targeted. Don't rewrite everything — fix what the reviewer flagged. Maintain a list of ALL prior feedback to avoid regressions.
-5. Go back to step 1 with fresh reviewers. The reviewer subagent has no memory of prior loops — include prior feedback context explicitly in each reviewer prompt to avoid repeating resolved issues.
+5. Go back to step 1.
 
 If the same finding survives 2 consecutive loops, stop and ask the user.
 
