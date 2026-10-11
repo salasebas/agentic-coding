@@ -29,13 +29,6 @@
       "skillFolderHash": "fee7bb5fdddc069d58cbea09b2c36b5a859eac05",
       "updatedAt": "2026-10-11T08:22:04.466Z"
     },
-    "code-review-and-quality": {
-      "source": "addyosmani/agent-skills",
-      "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
-      "skillPath": "skills/code-review-and-quality/SKILL.md",
-      "skillFolderHash": "2c0b966d411b0d64c4f44efdde30d5f6f3666f76",
-      "updatedAt": "2026-10-06T05:48:11.140Z"
-    },
     "codebase-design": {
       "source": "mattpocock/skills",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
