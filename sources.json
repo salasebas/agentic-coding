@@ -22,13 +22,6 @@
       "skillFolderHash": "db7a20dc1d8ad26a0307dcb45ebc79fc372f5c69",
       "updatedAt": "2026-10-04T06:24:27.215Z"
     },
-    "design-taste-frontend": {
-      "source": "Leonxlnx/taste-skill",
-      "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
-      "skillPath": "skills/taste-skill/SKILL.md",
-      "skillFolderHash": "a6d128e53b4ec0238baee751dde33bf707adb5ec",
-      "updatedAt": "2026-06-01T02:23:09.594Z"
-    },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
@@ -106,13 +99,6 @@
       "skillFolderHash": "39bd9cc130f7dfcc4e3ea0b3613f6ebed0d0ad2b",
       "updatedAt": "2026-10-06T05:10:20.029Z"
     },
-    "prototype": {
-      "source": "mattpocock/skills",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/prototype/SKILL.md",
-      "skillFolderHash": "e41d92e171f074a2b6887d8f6faca4a15c83d1ca",
-      "updatedAt": "2026-10-06T05:10:22.098Z"
-    },
     "research": {
       "source": "mattpocock/skills",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
@@ -176,26 +162,12 @@
       "skillFolderHash": "3df14e2d3a89459bf300614be9247e3ce74798f8",
       "updatedAt": "2026-10-06T05:10:36.941Z"
     },
-    "to-questionnaire": {
-      "source": "mattpocock/skills",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/to-questionnaire/SKILL.md",
-      "skillFolderHash": "46dfbeeba12a9e52eef446676f42e7551023d9a9",
-      "updatedAt": "2026-10-06T05:10:38.617Z"
-    },
     "wait-what": {
       "source": "mattpocock/skills",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/wait-what/SKILL.md",
       "skillFolderHash": "c8b050e6b8c711be1a9008ceacb2126914f0763e",
       "updatedAt": "2026-10-06T05:10:40.083Z"
-    },
-    "wizard": {
-      "source": "mattpocock/skills",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/wizard/SKILL.md",
-      "skillFolderHash": "0a163daf092c6f361158ca9627e81f2cb5230574",
-      "updatedAt": "2026-10-06T05:10:41.587Z"
     },
     "writing-for-agents": {
       "source": "mattpocock/skills",
@@ -246,13 +218,6 @@
       "skillFolderHash": "335c1862a43da9d629abafdb79ca0c0de118be08",
       "updatedAt": "2026-10-06T05:11:11.027Z"
     },
-    "git-commit": {
-      "source": "github/awesome-copilot",
-      "sourceUrl": "https://github.com/github/awesome-copilot.git",
-      "skillPath": "skills/git-commit/SKILL.md",
-      "skillFolderHash": "883a6a7466f55a9cd9f22cf1cce2d9333fc9b998",
-      "updatedAt": "2026-04-25T17:55:14.241Z"
-    },
     "unslop": {
       "source": "cursor/plugins",
       "sourceUrl": "https://github.com/cursor/plugins.git",
@@ -273,6 +238,41 @@
       "skillPath": "pstack/skills/technical-writing/SKILL.md",
       "skillFolderHash": "51c1a0ec9526c3976455f6e6ab00e0e0c5f3de5e",
       "updatedAt": "2026-10-10T20:58:48.015Z"
+    },
+    "shell-scripting": {
+      "source": "sammcj/agentic-coding",
+      "sourceUrl": "https://github.com/sammcj/agentic-coding.git",
+      "skillPath": "skills/shell-scripting/SKILL.md",
+      "skillFolderHash": "",
+      "updatedAt": "2026-10-11T07:56:29.263Z"
+    },
+    "good-css": {
+      "source": "vojtaholik/good-css",
+      "sourceUrl": "https://github.com/vojtaholik/good-css.git",
+      "skillPath": "skills/good-css/SKILL.md",
+      "skillFolderHash": "716c242ae3ef01743ab8e1851222260a05050763",
+      "updatedAt": "2026-10-11T08:15:39.508Z"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
+      "updatedAt": "2026-10-11T08:15:44.793Z"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368",
+      "updatedAt": "2026-10-11T08:15:44.784Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "skillFolderHash": "343db72180d05814949fef7d46be96b5c6ee86b3",
+      "updatedAt": "2026-10-11T08:15:44.790Z"
     }
   }
 }

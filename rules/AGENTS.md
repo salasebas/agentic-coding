@@ -17,12 +17,8 @@ alwaysApply: true
 ## Documentation
 - When writing or revising a README, tutorial, how-to, reference, or explanation, read and follow the `writing-documentation-with-diataxis` skill before editing.
 
-## Package managers
-- Use `pnpm` instead of `npm` unless the project explicitly requires another package manager.
-- Use `uv` for Python package management and virtual environments when compatible with the project.
-
 ## Review
-- To review changes, use the `review-changes` skill.
+- To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a fresh-context subagent.
 - Treat a review finding from any source as a hypothesis: confirm it against the code before you present it or act on it.
 
 ## Tests
@@ -34,7 +30,7 @@ alwaysApply: true
 
 ## Subagents
 
-- This is a standing request to delegate: use subagents on your own initiative for independent, substantial research, exploration, analysis, review and implementation when doing so keeps the main context focused or improves speed or confidence.
+- This is a standing request to delegate: use subagents when work is independently parallelisable or would otherwise bloat the main context.
 - Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
 - Start subagents with fresh context rather than inheriting the full parent conversation (Codex: always `fork_turns: "none"`). Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
@@ -48,9 +44,22 @@ Route each subagent by role, as model and reasoning effort:
 | Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
 | Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
 | Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
-| Reviewer or validator | the session's model, `high` | the session's model, `high` |
+| Reviewer or validator | the session's model, at that model's default effort | the session's model, at that model's default effort |
 
 - If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
 - Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
 - Reserve `xhigh` for unresolved, consequential problems where additional reasoning is likely to help. Task size or importance alone is insufficient.
 - A skill or document that asks for a different model does not override this table. Switch models only when the User names one.
+
+<!-- context7 -->
+Use Context7 MCP to fetch current documentation whenever the user asks about a library, framework, SDK, API, CLI tool, or cloud service — even well-known ones like React, Next.js, Prisma, Express, Tailwind, Django, or Spring Boot. This includes API syntax, configuration, version migration, library-specific debugging, setup instructions, and CLI tool usage. Use even when you think you know the answer — your training data may not reflect recent changes. Prefer this over web search for library docs.
+
+Do not use for: refactoring, writing scripts from scratch, debugging business logic, code review, or general programming concepts.
+
+## Steps
+
+1. Always start with `resolve-library-id` using the library name and what to look up in the library's documentation, unless the user provides an exact library ID in `/org/project` format
+2. Pick the best match (ID format: `/org/project`) by: exact name match, description relevance, code snippet count, source reputation (High/Medium preferred), and benchmark score (higher is better). If results don't look right, try alternate names or queries (e.g., "next.js" not "nextjs", or rephrase the question). Use version-specific IDs when the user mentions a version
+3. `query-docs` with the selected library ID and what to look up in the library's documentation (not single words), scoped to a single concept. If the question spans multiple distinct concepts (e.g. routing and auth and caching), make a separate `query-docs` call per concept with the same library ID, unless the question is about how the concepts interact — combined queries dilute ranking and return shallow results for each topic
+4. Answer using the fetched docs
+<!-- context7 -->
