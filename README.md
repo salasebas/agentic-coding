@@ -50,7 +50,7 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | [`mattpocock/skills`](https://github.com/mattpocock/skills) | `ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-me`, `grill-with-docs`, `grilling`, `handoff`, `implement`, `implement-spec`, `improve-codebase-architecture`, `pr`, `research`, `retro`, `setup-matt-pocock-skills`, `tdd`, `teach`, `to-spec`, `to-tickets`, `triage`, `wait-what`, `wayfinder`, `writing-for-agents` |
 | [`emilkowalski/skills`](https://github.com/emilkowalski/skills) | `animation-vocabulary`, `emil-design-eng`, `pick-ui-library`, `review-animations` |
 | [`sammcj/agentic-coding`](https://github.com/sammcj/agentic-coding) | `shell-scripting`, `writing-documentation-with-diataxis` |
-| [`cursor/plugins`](https://github.com/cursor/plugins), `pstack` | `technical-writing`, `unslop` |
+| [`cursor/plugins`](https://github.com/cursor/plugins), `pstack` | `blast-radius`, `technical-writing`, `unslop` |
 | `cursor/plugins`, `cursor-team-kit` | `deslop` |
 | [`vercel-labs/agent-skills`](https://github.com/vercel-labs/agent-skills) | `vercel-composition-patterns`, `vercel-react-best-practices`, `web-design-guidelines` |
 | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | `code-simplification` |
