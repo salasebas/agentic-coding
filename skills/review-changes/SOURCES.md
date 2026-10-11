@@ -14,6 +14,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/structure.md` | MIT, Copyright (c) 2026 Cursor |
 | [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail) `skills/ponytail-review/SKILL.md` | `2a1fe842d078` (2026-10-08) | `SKILL.md` | MIT, Copyright (c) 2026 DietrichGebert |
 | [`2dmurali/review-loop-skill`](https://github.com/2dmurali/review-loop-skill) `review-loop/SKILL.md` | `dec43b15b0e3` (2026-05-08) | `references/loop.md` | MIT, as stated in its `SKILL.md`; the repository has no licence file |
+| [`garrytan/gstack`](https://github.com/garrytan/gstack) `review/checklist.md` | `ab79e55119b7` (2026-10-11) | `references/bugs.md` | MIT, Copyright (c) 2026 Garry Tan |
 
 ## What each file takes
 
@@ -26,6 +27,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | `references/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
 | `references/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
 | `references/structure.md` | Structural remedies | `code-review-and-quality` |
+| `references/bugs.md` | "Sideways sweep" | gstack `review/checklist.md`, the opening and the Siblings rule |
 
 ## Local edits
 

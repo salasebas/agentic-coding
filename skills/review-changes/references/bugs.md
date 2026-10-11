@@ -25,6 +25,9 @@ The codebase might carefully gate features behind feature flags or internal-only
 ### Intended Breakage Guidelines
 If you identify a high risk finding, but the intent of the change is to introduce that finding – e.g. break some functionality, remove a feature flag, remove a safeguard – AND the scope of the change is well constrained, you SHOULD NOT waste the author's time by reporting the issue to them. However, if you believe it is likely that they are not aware of the full implications of their change, or you are worried that they are under-weighting the negative impacts (extreme example: a change titled "Delete the database"), or you are worried that the change is actually malicious, you should still report the finding.
 
+### Sideways sweep
+A finding is a defect class, not a line. Before rating any finding: grep the same pattern at every other ingress, command and call site (routes, CLI subcommands, workers, webhooks, cron, hooks); Read each match. Rate severity on the worst sibling and list the siblings under the finding as one decision.
+
 ### Over-reporting Guidelines
 If you report issues as Must fix when they are not in fact meaningful issues, devs will lose trust in you and stop listening to you over time.
 NEVER misreport the priority / importance of issues. Be extremely thorough in tracing issues end-to-end to gain complete, and total confidence before reporting.
