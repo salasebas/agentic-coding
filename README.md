@@ -29,13 +29,6 @@ npx skills add salasebas/skills -g -s review-changes
 npx skills add salasebas/skills -g -s review-changes -s python-development -s typescript-development -s rust-development -s golang-development -s no-comments
 ```
 
-As a plugin:
-
-| Harness | Command |
-| --- | --- |
-| Claude Code | `claude plugin marketplace add salasebas/skills`, then `claude plugin install salasebas-skills@salasebas` |
-| Codex | `codex plugin marketplace add salasebas/skills`, then `codex plugin add salasebas-skills` |
-
 ## Global rules
 
 [`rules/AGENTS.md`](./rules/AGENTS.md) holds the instructions every session loads. Each harness reads it from a different place:
