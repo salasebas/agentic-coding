@@ -11,7 +11,7 @@
     {
       "name": "salasebas-skills",
       "source": "./",
-      "description": "review-changes: fresh-context reviewers, validated findings, optional fix-and-review loop.",
+      "description": "review-changes: two parallel reviewers, validated findings, optional fix-and-review loop.",
       "category": "engineering",
       "keywords": [
         "skills",
