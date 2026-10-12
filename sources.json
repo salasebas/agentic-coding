@@ -287,6 +287,27 @@
       "skillPath": "skills/code-simplification/SKILL.md",
       "skillFolderHash": "15b6e21924188ee46402a8c91963162fd9056c7d",
       "updatedAt": "2026-10-11T21:15:52.716Z"
+    },
+    "react-doctor": {
+      "source": "millionco/react-doctor",
+      "sourceUrl": "https://github.com/millionco/react-doctor.git",
+      "skillPath": "skills/react-doctor/SKILL.md",
+      "skillFolderHash": "eb949ff795074223ee4b9d3c6e4a77ffe1e8f849",
+      "updatedAt": "2026-10-12T03:49:26.886Z"
+    },
+    "improve-animations": {
+      "source": "emilkowalski/skills",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/improve-animations/SKILL.md",
+      "skillFolderHash": "cf1f7aabac34c08f2cf833f039fa99af2f415183",
+      "updatedAt": "2026-10-12T03:49:29.153Z"
+    },
+    "playwright-best-practices": {
+      "source": "currents-dev/playwright-best-practices-skill",
+      "sourceUrl": "https://github.com/currents-dev/playwright-best-practices-skill.git",
+      "skillPath": "playwright-best-practices/SKILL.md",
+      "skillFolderHash": "b4620eb2cfc6b58173cda800b7c7578190dfd632",
+      "updatedAt": "2026-10-12T03:49:31.858Z"
     }
   }
 }
