@@ -39,8 +39,8 @@ Route each subagent by role, as model and reasoning effort:
 | Role | Claude Code | Codex |
 | --- | --- | --- |
 | Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
-| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
-| Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
+| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `haiku`, `high` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
+| Implementation | `haiku`, `high` | `gpt-6.1-sol`, `medium` |
 | Reviewer or validator | the session's model, at that model's default effort | the session's model, at that model's default effort |
 
 - If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
