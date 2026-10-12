@@ -12,6 +12,14 @@ DO NOT report vulnerabilities in existing code that is not being changed.
 ### Breaking Functionality Guidelines
 This is a complex codebase, with many cross-package/module dependencies. Often simple code changes in one place have subtle interactions that break functionality elsewhere. You MUST be extremely thorough in tracing through possible side effects of the changes.
 
+### Enum & Value Completeness
+When the diff introduces a new enum value, status string, tier name, or type constant, or loosens what an input accepts (a new MIME type, extension or flag, or a widened validator/parser/guard):
+- **Trace it through every consumer.** Read (don't just grep — READ) each file that switches on, filters by, or displays that value. If any consumer doesn't handle the new value, flag it. Common miss: adding a value to the frontend dropdown but the backend model/compute method doesn't persist it.
+- **Check allowlists/filter arrays.** Search for arrays or `%w[]` lists containing sibling values (e.g., if adding "revise" to tiers, find every `%w[quick lfg mega]` and verify "revise" is included where needed).
+- **Check `case`/`if-elsif` chains.** If existing code branches on the enum, does the new value fall through to a wrong default?
+- **Loosened acceptance breaks unchanged consumers.** Grep every consumer of the same field and confirm each handles the newly accepted shape; the broken code is usually outside the diff.
+To do this: use Grep to find all references to the sibling values (e.g., grep for "lfg" or "mega" to find all tier consumers). Read each match. This step requires reading code OUTSIDE the diff.
+
 ### Breaking Devex Guidelines
 It can be easy to break developers' ability to run / build the code locally. You MUST catch changes that will impact users' developer experience. Some examples (not exhaustive):
 - Modifying how secrets are read / where they are read from

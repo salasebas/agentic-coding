@@ -13,6 +13,7 @@ alwaysApply: true
 - Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
 - Diagnose the root cause before implementing a fix, and prefer durable corrections over workarounds or symptom suppression.
 - When opening a pull or merge request that finishes an issue, put `Closes #<issue>` in the description.
+- Before UI work, read the project's `DESIGN.md` when one exists, and take colors, typography, spacing and component styles from it.
 
 ## Review
 - To review changes, use the `review-changes` skill. When this session wrote the changes, run the review in a fresh-context subagent.
@@ -39,8 +40,8 @@ Route each subagent by role, as model and reasoning effort:
 | Role | Claude Code | Codex |
 | --- | --- | --- |
 | Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
-| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `sonnet`, `medium` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
-| Implementation | `sonnet`, `medium` | `gpt-6.1-sol`, `medium` |
+| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `haiku`, `high` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
+| Implementation | `haiku`, `high` | `gpt-6.1-sol`, `medium` |
 | Reviewer or validator | the session's model, at that model's default effort | the session's model, at that model's default effort |
 
 - If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.

@@ -10,6 +10,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | --- | --- | --- | --- |
 | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) `skills/code-review-and-quality/SKILL.md` | `28f435ea69a7` (2026-09-26) | `SKILL.md`, `references/structure.md` | MIT, Copyright (c) 2025 Addy Osmani |
 | [`cursor/plugins`](https://github.com/cursor/plugins) `thermos/skills/thermos/SKILL.md` | `5080d38e4c52` (2026-05-28) | `SKILL.md` | MIT, Copyright (c) 2026 Cursor |
+| [`garrytan/gstack`](https://github.com/garrytan/gstack) `review/SKILL.md` | `5d647455f21e` (2026-10-11) | `SKILL.md` | MIT, Copyright (c) 2026 Garry Tan |
 | `cursor/plugins` `thermos/skills/thermo-nuclear-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/bugs.md` | MIT, Copyright (c) 2026 Cursor |
 | `cursor/plugins` `thermos/skills/thermo-nuclear-code-quality-review/SKILL.md` | `5102244dabd6` (2026-05-28) | `references/structure.md` | MIT, Copyright (c) 2026 Cursor |
 | [`DietrichGebert/ponytail`](https://github.com/DietrichGebert/ponytail) `skills/ponytail-review/SKILL.md` | `2a1fe842d078` (2026-10-08) | `SKILL.md` | MIT, Copyright (c) 2026 DietrichGebert |
@@ -23,10 +24,12 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | `SKILL.md` | Approval standard, "Lead with what matters", "Honesty in Review" | `code-review-and-quality` |
 | `SKILL.md` | Workflow steps 1 and 2, and the two reviewer descriptions in step 3 | `thermos` |
 | `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
+| `SKILL.md` | Three "Validate" bullets on quoting the code | gstack `review/SKILL.md`, "Pre-emit verification gate" |
 | `references/loop.md` | Defaults, stop conditions, revision and memory rules | `review-loop` |
 | `references/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
-| `references/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
+| `references/bugs.md` | "Enum & Value Completeness" | gstack `review/checklist.md`, whole section |
 | `references/bugs.md` | "Gate Integrity" | gstack `review/checklist.md`, cut down |
+| `references/structure.md` | Opening, "Standards", "Approval Bar" | `thermo-nuclear-code-quality-review` |
 | `references/structure.md` | Structural remedies | `code-review-and-quality` |
 
 ## Local edits
@@ -40,6 +43,7 @@ These are the only places where the text differs from upstream. Reapply them aft
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
 - In "Loop", step 5 reads "Go back to step 1" where `review-loop` briefs a fresh reviewer subagent. See "Why the review does not delegate".
 - "Gate Integrity" keeps gstack's definition, its one question, the two unlabelled patterns and the grouping rule. The `gstack-gate-diff` scan, the `RH-*` tags, the confidence score and the fix options are gone; the tagged patterns read as one sentence.
+- The three quoting bullets drop gstack's confidence score. An unverified finding follows the existing completion rule: it is dropped or named under `Not checked`.
 
 Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
 

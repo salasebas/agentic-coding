@@ -48,7 +48,7 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | Source | Skills |
 | --- | --- |
 | [`mattpocock/skills`](https://github.com/mattpocock/skills) | `ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-me`, `grill-with-docs`, `grilling`, `handoff`, `implement`, `implement-spec`, `improve-codebase-architecture`, `pr`, `research`, `retro`, `setup-matt-pocock-skills`, `tdd`, `teach`, `to-spec`, `to-tickets`, `triage`, `wait-what`, `wayfinder`, `writing-for-agents` |
-| [`emilkowalski/skills`](https://github.com/emilkowalski/skills) | `animation-vocabulary`, `emil-design-eng`, `pick-ui-library`, `review-animations` |
+| [`emilkowalski/skills`](https://github.com/emilkowalski/skills) | `animation-performance`, `animation-vocabulary`, `emil-design-eng`, `improve-animations`, `mobile-native`, `pick-ui-library`, `review-animations` |
 | [`sammcj/agentic-coding`](https://github.com/sammcj/agentic-coding) | `shell-scripting`, `writing-documentation-with-diataxis` |
 | [`cursor/plugins`](https://github.com/cursor/plugins), `pstack` | `technical-writing`, `unslop` |
 | `cursor/plugins`, `cursor-team-kit` | `deslop` |
@@ -57,11 +57,24 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | [`vojtaholik/good-css`](https://github.com/vojtaholik/good-css) | `good-css` |
 | [`motiondivision/ai-kit`](https://github.com/motiondivision/ai-kit) | `motion` |
 | [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser) | `agent-browser` |
+| [`currents-dev/playwright-best-practices-skill`](https://github.com/currents-dev/playwright-best-practices-skill) | `playwright-best-practices` |
 | [`vercel-labs/skills`](https://github.com/vercel-labs/skills) | `find-skills` |
 
 For the two `cursor/plugins` rows the source is the folder URL, for example `https://github.com/cursor/plugins/tree/main/pstack`.
 
+`animate-expo`, also from `emilkowalski/skills`, is installed per project in Expo projects: `npx skills add emilkowalski/skills -s animate-expo`.
+
 [`sources.json`](./sources.json) records the folder hash of each copy I last installed, so a rename or removal upstream shows up. It is not a backup of the skill text.
+
+## Links
+
+Things I come back to. None of them is installed by this repo.
+
+| Link | What it is |
+| --- | --- |
+| [`google-labs-code/design.md`](https://github.com/google-labs-code/design.md) | The `DESIGN.md` format: design tokens in YAML front matter, the reasoning in prose. `npx @google/design.md lint DESIGN.md` validates the file. |
+| [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md) | `DESIGN.md` files modelled on the design systems of well-known brands, to copy and adjust. |
+| [vercel.com/design.md](https://vercel.com/design.md) | Vercel's own `DESIGN.md`, as a worked example. |
 
 ## Licence
 

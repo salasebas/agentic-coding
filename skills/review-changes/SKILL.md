@@ -44,6 +44,9 @@ Treat each finding as a hypothesis to confirm or refute, not an instruction to m
 - Every finding needs a concrete case: "this input or situation leads to this wrong result". No case, no finding.
 - For a structure finding, the concrete case is the exact code and the named restructuring that removes it.
 - Re-read the lines and confirm: the caller exists, the value can really be empty, the code really is unused.
+- **Quote the specific code line:** file:line and verbatim text. For a missing field, quote its class definition; for a nullable value, its initialization; for a race, both sides.
+- For framework-generated symbols, read and quote their generating metaclass, descriptor, ORM Meta block, migration, decorator or schema. Missing literal names in the class body or grep results do not prove absence.
+- **If you cannot quote the motivating line(s), the finding is unverified.**
 - Propose the smallest fix that works. Prefer fixes that delete code. Never add layers, frameworks or config the problem does not need.
 - No style taste, no "consider", no vague worries.
 
