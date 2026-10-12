@@ -48,7 +48,7 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | Source | Skills |
 | --- | --- |
 | [`mattpocock/skills`](https://github.com/mattpocock/skills) | `ask-matt`, `code-review`, `codebase-design`, `diagnosing-bugs`, `domain-modeling`, `grill-me`, `grill-with-docs`, `grilling`, `handoff`, `implement`, `implement-spec`, `improve-codebase-architecture`, `pr`, `research`, `retro`, `setup-matt-pocock-skills`, `tdd`, `teach`, `to-spec`, `to-tickets`, `triage`, `wait-what`, `wayfinder`, `writing-for-agents` |
-| [`emilkowalski/skills`](https://github.com/emilkowalski/skills) | `animation-vocabulary`, `emil-design-eng`, `improve-animations`, `pick-ui-library`, `review-animations` |
+| [`emilkowalski/skills`](https://github.com/emilkowalski/skills) | `animation-performance`, `animation-vocabulary`, `emil-design-eng`, `improve-animations`, `mobile-native`, `pick-ui-library`, `review-animations` |
 | [`sammcj/agentic-coding`](https://github.com/sammcj/agentic-coding) | `shell-scripting`, `writing-documentation-with-diataxis` |
 | [`cursor/plugins`](https://github.com/cursor/plugins), `pstack` | `technical-writing`, `unslop` |
 | `cursor/plugins`, `cursor-team-kit` | `deslop` |
@@ -61,6 +61,8 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | [`vercel-labs/skills`](https://github.com/vercel-labs/skills) | `find-skills` |
 
 For the two `cursor/plugins` rows the source is the folder URL, for example `https://github.com/cursor/plugins/tree/main/pstack`.
+
+`animate-expo`, also from `emilkowalski/skills`, is installed per project in Expo projects: `npx skills add emilkowalski/skills -s animate-expo`.
 
 [`sources.json`](./sources.json) records the folder hash of each copy I last installed, so a rename or removal upstream shows up. It is not a backup of the skill text.
 

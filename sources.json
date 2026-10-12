@@ -301,6 +301,20 @@
       "skillPath": "playwright-best-practices/SKILL.md",
       "skillFolderHash": "b4620eb2cfc6b58173cda800b7c7578190dfd632",
       "updatedAt": "2026-10-12T03:49:31.858Z"
+    },
+    "animation-performance": {
+      "source": "emilkowalski/skills",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animation-performance/SKILL.md",
+      "skillFolderHash": "59c4651915a493803d1696d4278d2f9f980e47c8",
+      "updatedAt": "2026-10-12T04:15:53.761Z"
+    },
+    "mobile-native": {
+      "source": "emilkowalski/skills",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/mobile-native/SKILL.md",
+      "skillFolderHash": "fdad6e6e91d8bbfda7164c7027269a8389dbadcd",
+      "updatedAt": "2026-10-12T04:15:53.766Z"
     }
   }
 }
