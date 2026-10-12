@@ -34,6 +34,12 @@ alwaysApply: true
 - Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
 - Keep pushes, deletions, and other destructive operations on the main agent.
 - Scouts and reviewers are read-only.
+- A subagent's final report enters the main context whole. Ask for it in a fixed shape in the brief:
+  - Simple scout: one line per hit, ``path:line — `symbol` — short note``, then totals. Zero hits: `No match.` No suggested fixes.
+  - Tracing scout: the answer in one sentence, then the evidence as the same `path:line` lines.
+  - Implementation: one line per change, `path:line-range — change`, then the check it ran and the result. A blocker goes first.
+  - Reviewers report as the `review-changes` skill says.
+  - Security warnings, irreversible actions, and anything a fragment could make ambiguous are written in full sentences.
 
 Route each subagent by role, as model and reasoning effort:
 
