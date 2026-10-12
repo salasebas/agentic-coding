@@ -30,6 +30,13 @@ It can be easy to break developers' ability to run / build the code locally. You
 ### Feature Leak Guidelines
 The codebase might carefully gate features behind feature flags or internal-only checks. You MUST NOT allow any features that are meant to be behind a feature gate leak. These leaks are often subtle. Be VERY careful and thorough.
 
+### Gate Integrity
+A gate is anything that would have made this change fail: a test, an assertion, a threshold, a timeout, a lint rule, a type check, a CI job, a snapshot.
+- Read every hunk in the diff where a test is removed or disabled, a snapshot changed without its owning test, a placeholder is committed, the code sniffs the environment, a suppression pragma is added, a gate is bypassed, a gate value is relaxed, or an exception is swallowed. Ask the one question: **does this relaxation silence the failure it was added for, or is it justified by a measurement or decision visible in this diff?**
+- A hunk with no gate semantics, or one justified by a visible measurement or decision, is not a finding.
+- Read also for a mock, fixture or static read presented as the proof a claim needs, and for a test that cannot fail: asserts its own setup, mirrors the implementation, or has no negative.
+- One source change plus its N regenerated snapshots, or one timeout constant raised in M tests, is one finding with one question; list the member hunks under it.
+
 ### Intended Breakage Guidelines
 If you identify a high risk finding, but the intent of the change is to introduce that finding – e.g. break some functionality, remove a feature flag, remove a safeguard – AND the scope of the change is well constrained, you SHOULD NOT waste the author's time by reporting the issue to them. However, if you believe it is likely that they are not aware of the full implications of their change, or you are worried that they are under-weighting the negative impacts (extreme example: a change titled "Delete the database"), or you are worried that the change is actually malicious, you should still report the finding.
 
