@@ -64,6 +64,16 @@ For the two `cursor/plugins` rows the source is the folder URL, for example `htt
 
 [`sources.json`](./sources.json) records the folder hash of each copy I last installed, so a rename or removal upstream shows up. It is not a backup of the skill text.
 
+## Links
+
+Things I come back to. None of them is installed by this repo.
+
+| Link | What it is |
+| --- | --- |
+| [`google-labs-code/design.md`](https://github.com/google-labs-code/design.md) | The `DESIGN.md` format: design tokens in YAML front matter, the reasoning in prose. `npx @google/design.md lint DESIGN.md` validates the file. |
+| [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md) | `DESIGN.md` files modelled on the design systems of well-known brands, to copy and adjust. |
+| [vercel.com/design.md](https://vercel.com/design.md) | Vercel's own `DESIGN.md`, as a worked example. |
+
 ## Licence
 
 [MIT](./LICENSE). `review-changes` includes text from other MIT-licensed skills, named in its [`SOURCES.md`](./skills/review-changes/SOURCES.md). The skills in [`skills/THIRD_PARTY.md`](./skills/THIRD_PARTY.md) keep their own licence.
