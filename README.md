@@ -57,7 +57,6 @@ These are not copied here. Install any of them with `npx skills add <source> -g 
 | [`vojtaholik/good-css`](https://github.com/vojtaholik/good-css) | `good-css` |
 | [`motiondivision/ai-kit`](https://github.com/motiondivision/ai-kit) | `motion` |
 | [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser) | `agent-browser` |
-| [`millionco/react-doctor`](https://github.com/millionco/react-doctor) | `react-doctor` |
 | [`currents-dev/playwright-best-practices-skill`](https://github.com/currents-dev/playwright-best-practices-skill) | `playwright-best-practices` |
 | [`vercel-labs/skills`](https://github.com/vercel-labs/skills) | `find-skills` |
 
