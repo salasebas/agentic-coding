@@ -42,7 +42,7 @@ Confirm the diff is non-empty before reviewing.
 Treat each finding as a hypothesis to confirm or refute, not an instruction to modify code.
 
 - Every finding needs a concrete case: "this input or situation leads to this wrong result". No case, no finding.
-- For a structure finding, the concrete case is the exact code and the named restructuring that removes it.
+- For a structure finding, the concrete case is the exact code, the maintenance task or failure it makes worse, and the named restructuring that removes it.
 - Re-read the lines and confirm: the caller exists, the value can really be empty, the code really is unused.
 - **Quote the specific code line:** file:line and verbatim text. For a missing field, quote its class definition; for a nullable value, its initialization; for a race, both sides.
 - For framework-generated symbols, read and quote their generating metaclass, descriptor, ORM Meta block, migration, decorator or schema. Missing literal names in the class body or grep results do not prove absence.
@@ -78,8 +78,9 @@ End with:
 - `Verdict: Ship.` or `Verdict: fix 1 and 3 first.`
 - `Not checked:` one line, if something mattered and you could not check it.
 
-Nothing found: `What this change does:`, then `Looks good. Ship.` and one line
-on what you checked.
+Nothing found: `What this change does:`, then `Looks good. Ship.` and what you checked:
+the cases you traced in the code and the checks you ran, as short as the change allows.
+A test you read is a case you traced; only a test you ran is a check you ran.
 
 **Lead with what matters.** Order findings by leverage: correctness and security first, then structural regressions and missed simplifications, then everything else. Don't bury a real issue under cosmetic nits — a few high-conviction comments beat a long list. If you have one structural problem and ten nits, the structural problem *is* the review.
 
