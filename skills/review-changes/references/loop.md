@@ -6,7 +6,11 @@
 
 "max N loops" → max_loops = N.
 
-1. Run the [Workflow](../SKILL.md#workflow) through validation.
+1. Run the [Workflow](../SKILL.md#workflow) through validation. From loop 2 on, the change holds this session's own fixes: dispatch a reviewer subagent to run it on the same scope instead. The reviewer must:
+   - Be a **separate subagent** (fresh context, no anchoring to your reasoning)
+   - Receive only the **work product** (files, diffs) — not your thought process
+
+   The reviewer subagent has no memory of prior loops — include prior feedback context explicitly in each reviewer prompt to avoid repeating resolved issues. Give it the original requirements too. Confirm each finding it returns against the code it quotes before you fix it.
 2. Report to the user:
    ```
    Loop {N}/{max}:
