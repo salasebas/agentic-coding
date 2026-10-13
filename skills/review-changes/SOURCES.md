@@ -42,10 +42,11 @@ These are the only places where the text differs from upstream. Reapply them aft
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
 - In "Loop", step 5 reads "Go back to step 1" where `review-loop` briefs a fresh reviewer subagent. See "Why the review does not delegate".
+- In "Loop", the max_loops check comes after the revision where `review-loop` checks it before, so the findings of the last pass are fixed too. The revision step also runs the checks its fixes need.
 - "Gate Integrity" keeps gstack's definition, its one question, the two unlabelled patterns and the grouping rule. The `gstack-gate-diff` scan, the `RH-*` tags, the confidence score and the fix options are gone; the tagged patterns read as one sentence.
 - The three quoting bullets drop gstack's confidence score. An unverified finding follows the existing completion rule: it is dropped or named under `Not checked`.
 
-Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, and the one-line "Coverage" section of the bugs reviewer.
+Written for this repo, with no upstream: the scope commands and the rule for a revision that is not checked out, the in-session review in steps 3 to 5, the concrete case for a structure finding, the validation completion rule, the blocker rule and the "Final report" section of the loop, and the one-line "Coverage" section of the bugs reviewer.
 
 ## Left out on purpose
 

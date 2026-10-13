@@ -12,13 +12,24 @@
    Loop {N}/{max}:
    - {summary of key feedback points}
    ```
-3. Check stop conditions, in this order:
-   1. If the loop ended with no validated **Must fix** or **Should fix** finding → **stop, go to the report**
-   2. If loops completed >= max_loops → **stop, go to the report**
-   3. Otherwise → **revise and loop**
-4. Revise: fix the validated **Must fix** and **Should fix** findings. **Nice to have** findings are optional. Each revision should be targeted. Don't rewrite everything — fix what the reviewer flagged. Maintain a list of ALL prior feedback to avoid regressions.
-5. Go back to step 1.
+3. If the loop ended with no validated **Must fix** or **Should fix** finding → **stop, go to the report**
+4. Revise: fix the validated **Must fix** and **Should fix** findings. **Nice to have** findings are optional. Each revision should be targeted. Don't rewrite everything — fix what the reviewer flagged. Maintain a list of ALL prior feedback to avoid regressions. Then run the checks those fixes need.
+5. If loops completed >= max_loops → **stop, go to the report**. Otherwise go back to step 1.
+
+max_loops limits the full review passes, not the fixes: the findings of the last pass are fixed too.
+
+If a fix cannot be completed safely, leave that finding unfixed and name the concrete blocker in the report.
 
 If the same finding survives 2 consecutive loops, stop and ask the user.
 
 **Never** continue past max_loops without user consent.
+
+## Final report
+
+After the [Report](../SKILL.md#report) of the last pass, add:
+
+- `Fixed:` the findings fixed, by loop.
+- `Not fixed:` each finding left unfixed, with its concrete blocker.
+- `Verification:` for the fixes of the last pass, which checks ran and their result, and whether those fixes were reviewed again. Fixes made after the last review pass have not been reviewed: say so, and never present them as reviewed.
+
+Skip an empty `Fixed:` or `Not fixed:` line.
