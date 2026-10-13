@@ -25,7 +25,7 @@ Each row is one upstream file, the commit that last changed it when it was copie
 | `SKILL.md` | Workflow steps 1 and 2, and the two reviewer descriptions in step 3 | `thermos` |
 | `SKILL.md` | Opening line, scope default, "Validate" bullets, "Report" format | `ponytail-review` |
 | `SKILL.md` | Three "Validate" bullets on quoting the code | gstack `review/SKILL.md`, "Pre-emit verification gate" |
-| `references/loop.md` | Defaults, stop conditions, revision and memory rules | `review-loop` |
+| `references/loop.md` | Defaults, stop conditions, revision and memory rules, the two reviewer subagent rules and its no-memory limitation | `review-loop` |
 | `references/bugs.md` | Prompt, scope, guidelines, final response, critical rules | `thermo-nuclear-review`, whole |
 | `references/bugs.md` | "Enum & Value Completeness" | gstack `review/checklist.md`, whole section |
 | `references/bugs.md` | "Gate Integrity" | gstack `review/checklist.md`, cut down |
@@ -41,7 +41,7 @@ These are the only places where the text differs from upstream. Reapply them aft
 - The reviewers say "the change" where upstream says "this PR" or "the branch", and Must fix where it says High priority, so one skill serves any scope and one scale.
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
-- In "Loop", step 5 reads "Go back to step 1" where `review-loop` briefs a fresh reviewer subagent. See "Why the review does not delegate".
+- In "Loop", the first pass runs in the session where `review-loop` spawns a reviewer subagent for every pass; from loop 2 on it spawns one as `review-loop` does, and that reviewer runs this skill's workflow where `review-loop` gives it a scoring prompt. See "Why the review does not delegate".
 - In "Loop", the max_loops check comes after the revision where `review-loop` checks it before, so the findings of the last pass are fixed too. The revision step also runs the checks its fixes need.
 - "Gate Integrity" keeps gstack's definition, its one question, the two unlabelled patterns and the grouping rule. The `gstack-gate-diff` scan, the `RH-*` tags, the confidence score and the fix options are gone; the tagged patterns read as one sentence.
 - The three quoting bullets drop gstack's confidence score. An unverified finding follows the existing completion rule: it is dropped or named under `Not checked`.
@@ -91,6 +91,8 @@ In the session, by effort, one run per pull request at `medium` and `low`:
 | `low` | 3 of 3 | 2 to 10 | 0.54 |
 
 Delegating did 2.5 to 4 times the work for the same result: each subagent re-read the diff and the surrounding files, and the session that launched it re-read the code again to validate findings it had not investigated. Hits were counted by matching the defect's file and symbol in the report. Every run started from a clean session, so none measured a session reviewing its own change.
+
+The loop is that unmeasured case from its second pass on: the session re-reviews fixes it has just written, with its earlier conclusions still in context. So those passes go to a fresh reviewer subagent, as `review-loop` does for every pass. This rests on `review-loop`'s reasoning (anchoring), not on a comparison here; none has been run on loop passes.
 
 ## How to update from upstream
 
