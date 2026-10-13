@@ -38,7 +38,7 @@ These are the only places where the text differs from upstream. Reapply them aft
 
 - Heading levels are shifted so each file has one title.
 - In "Report", "Very simple English" reads "Very simple language".
-- In "Report", the nothing-found line names the cases traced and the checks run where `ponytail-review` asks for one line on what was checked, so a clean verdict shows what it rests on.
+- In "Report", the nothing-found line names what was read and what was run where `ponytail-review` asks for one line on what was checked, so a clean verdict shows what it rests on.
 - The reviewers say "the change" where upstream says "this PR" or "the branch", and Must fix where it says High priority, so one skill serves any scope and one scale.
 - The bugs reviewer's "Final Response" is shortened and no longer names BugBot.
 - In "Loop", the stop condition is "no validated Must fix or Should fix finding" where `review-loop` uses a score, and its Critical / Important / Minor labels read Must fix / Should fix / Nice to have.
