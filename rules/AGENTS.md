@@ -28,10 +28,10 @@ alwaysApply: true
 
 ## Subagents
 
-- This is a standing request to delegate: use subagents when work is independently parallelisable or would otherwise bloat the main context.
-- Keep tiny or tightly coupled work on the main agent when coordination would cost more than it saves.
+- The main agent does the work. Delegate only when the user asks, when a rule or the invoked skill requires it (such as the fresh-context review), or for a read-heavy task (exploration, tracing, test or log triage, documentation research) whose raw output would bury the main context and whose summary is all the main agent needs. A search or read that takes a few tool calls stays on the main agent.
+- Implementation stays with the main agent unless the user asks for writers. Then give a writer only a piece that shares no files, interfaces, or state with other work in flight; changes that meet in one flow or data model have one owner.
+- Size each wave by the open questions, not by files or components: one subagent per question.
 - Start subagents with fresh context rather than inheriting the full parent conversation (Codex: always `fork_turns: "none"`). Provide a self-contained brief with the objective, relevant requirements, scope, constraints, and expected output.
-- Fan out one subagent per independent task, up to 10 per wave, each writer owning disjoint files.
 - Keep pushes, deletions, and other destructive operations on the main agent.
 - Scouts and reviewers are read-only.
 
