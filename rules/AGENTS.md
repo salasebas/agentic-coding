@@ -39,12 +39,11 @@ Route each subagent by role, as model and reasoning effort:
 
 | Role | Claude Code | Codex |
 | --- | --- | --- |
-| Simple scout: grep, locating files, extracting data, parallel scouting | `haiku`, `medium` | `gpt-6-luna`, `high` |
-| Tracing scout: follows a flow across modules or finds the likely cause of a bug | `haiku`, `high` | `gpt-6.1-sol`, `low`; `medium` if the question is ambiguous |
+| Scout: locates files, extracts data, follows a flow across modules, or finds the likely cause of a bug | `haiku`, `high` | `gpt-6-luna`, `high` |
 | Implementation | `haiku`, `high` | `gpt-6.1-sol`, `medium` |
 | Reviewer or validator | the session's model, at that model's default effort | the session's model, at that model's default effort |
 
-- If a simple scout returns inconclusive or shallow results, escalate to the tracing scout instead of retrying it.
+- If a scout returns inconclusive or shallow results, the main agent investigates the question itself instead of retrying the scout.
 - Escalate implementation to `high` when a concrete reasoning blocker remains after inspecting relevant code and checking assumptions.
 - Reserve `xhigh` for unresolved, consequential problems where additional reasoning is likely to help. Task size or importance alone is insufficient.
 - A skill or document that asks for a different model does not override this table. Switch models only when the User names one.
